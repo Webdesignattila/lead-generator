@@ -11,9 +11,10 @@ app = FastAPI()
 os.makedirs("static", exist_ok=True)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-TELEGRAM_BOT_TOKEN = "8639869806:AAElec-a0x28qDwGFqMRaEkFaWYek9b_2OQ"
-TELEGRAM_CHAT_ID = "8414903602"
-GROQ_API_KEY = "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"
+# Haal de gevoelige gegevens op uit omgevingsvariabelen
+TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "8414903602")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 groq_client = Groq(api_key=GROQ_API_KEY)
 
