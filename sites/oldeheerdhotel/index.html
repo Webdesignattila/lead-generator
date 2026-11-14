@@ -66,7 +66,9 @@
   .ts-side { display: grid; grid-template-columns: subgrid; grid-template-rows: auto auto 1fr; row-gap: var(--s-5); align-self: stretch; }
   .ts-side > * { grid-column: 1 / -1; }
   @media (min-width: 1024px) { #eetcafe .grid > .pl-photo > img { height: min(calc(100cqw / .8), calc(var(--pl-room) - 88px)) !important; } }
-  .ts-side > .pl-photo { grid-column: 1 / span 3; align-self: end; }
+  .ts-side > .ts-small { grid-column: 1 / span 3; align-self: end; display: block; overflow: clip; }
+  @media (min-width: 1024px) and (max-width: 1279px), (min-width: 1024px) and (max-height: 799px) { .ts-side > .ts-small { display: none; } }
+  .prog .t-label { color: var(--muted); margin-bottom: var(--s-3); }
   /* the tablet keeps every split across, so each section stays one screen */
   @media (min-width: 640px) and (max-width: 1023px) {
     #visit .pl-photo > img { aspect-ratio: 2 / 1; }
@@ -85,9 +87,9 @@
     .trio > .span-3 > img { aspect-ratio: 1; }
     .ts-side { display: contents; }
     #eetcafe .grid > *, .ts-side > * { grid-column: 1 / -1; }
-    .ts-side > .pl-photo, #eetcafe .grid > .pl-photo { grid-column: auto / span 6; }
-    #eetcafe .grid > .pl-photo { order: 1; } .ts-side > .pl-photo { order: 2; }
-    #eetcafe .pl-photo > img { aspect-ratio: 1 / 2; }
+    .ts-side > .ts-small, #eetcafe .grid > .pl-photo { grid-column: auto / span 6; }
+    #eetcafe .grid > .pl-photo { order: 1; } .ts-side > .ts-small { order: 2; }
+    #eetcafe .pl-photo > img { aspect-ratio: 5 / 4; }
     .section-head--split > .link { width: 100%; }
     .footer__address + p { display: none; }
     #groepen .order > .tile__media { aspect-ratio: 6 / 5; }
@@ -209,8 +211,14 @@
       <div class="grid grid--top">
         <div class="ts-side span-5">
           <p>Lunch, diner of een biertje aan de bar. Op de kaart staan onze schnitzels, lokale klassiekers en gerechten van het seizoen, gemaakt met verse producten uit de regio.</p>
-          <p><a class="link" href="#groepen">Bekijk afhalen en bezorgen</a></p>
-          <figure class="pl-photo" style="--pl-r: 1"><img width="1086" height="1086" src="img/grill.jpg" srcset="img/grill-400.jpg 400w, img/grill.jpg 1086w" sizes="282px" alt="Een schotel met gegrilde kip en gehakt uit de keuken" loading="lazy" data-source="client" data-subject="gerecht"></figure>
+          <div class="prog">
+            <p class="t-label">Programma en faciliteiten</p>
+            <ul class="rows">
+              <li><span class="rows__name">Klaverjassen</span><span class="rows__value">€&nbsp;5 inleg</span><p>Elke vrijdag om 20:00 uur, inloop vanaf 19:00. Te winnen: cadeaubonnen van Slagerij Beukeveld.</p></li>
+              <li><span class="rows__name">Pooltafel van 9 ft</span><p>Betalen met munten van €&nbsp;2, pin of telefoon.</p></li>
+            </ul>
+          </div>
+          <a class="ts-small m-zoom" href="#groepen" aria-label="Bekijk afhalen en bezorgen"><figure class="pl-photo" style="--pl-r: 1.5"><img width="1086" height="1086" src="img/grill.jpg" srcset="img/grill-400.jpg 400w, img/grill.jpg 1086w" sizes="282px" alt="Een schotel met gegrilde kip en gehakt uit de keuken" loading="lazy" data-source="client" data-subject="gerecht"></figure></a>
         </div>
         <figure class="pl-photo pl-photo--end span-6 start-7" style="--pl-r: .8; --pl-head: 88px" data-moment="picture-develops"><img width="869" height="1086" src="img/bar.jpg" srcset="img/bar-400.jpg 400w, img/bar.jpg 869w" sizes="(max-width: 1023px) 100vw, 588px" alt="De bar van het eetcafé met glazen, flessen en gasten aan tafel" loading="lazy" data-source="client" data-subject="eetcafé"></figure>
       </div>
