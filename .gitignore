@@ -1,0 +1,17 @@
+# --- Persoonsgegevens (AVG): nooit naar GitHub ---
+echte_leads.csv
+verzonden.txt
+leads_status.json
+leads_status.json.tmp
+*.csv
+
+# --- Gegenereerd / lokaal ---
+docs/dagstart/
+docs/logs/scripts/
+static/
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+.taste-skill/

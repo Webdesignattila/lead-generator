@@ -1,0 +1,112 @@
+{
+  "_uitleg": "Instellingen voor de Mainframe-app. Pas teksten, links en scripts hier aan; de app leest dit bestand bij elke actie opnieuw. {naam}, {plaats} en {branche} worden per lead ingevuld.",
+  "whatsapp_bericht": "Hoi {naam}! Ik ben Attila van Webdesign Attila. Ik kwam jullie tegen op Google en zag dat er met de website nog veel meer klanten te halen zijn uit {plaats}. Ik heb een gratis voorstel klaarliggen: mag ik je dat kort laten zien?",
+  "mail_onderwerp": "Een website die {naam} meer klanten oplevert",
+  "mail_bericht": "Hoi,\n\nIk ben Attila van Webdesign Attila. Ik zag {naam} op Google en heb gekeken hoe jullie online gevonden worden in {plaats}.\n\nIk maak lichte, snelle websites voor lokale bedrijven, met echte Google-reviews, een directe bel- en WhatsApp-knop en goede vindbaarheid. Graag laat ik je vrijblijvend een voorbeeld zien.\n\nMet vriendelijke groet,\nAttila\nWebdesign Attila\nwebdesignattila.nl",
+  "scripts": [
+    {
+      "sleutel": "scraper",
+      "label": "Lead-scraper",
+      "bestand": "echte_scraper.py",
+      "uitleg": "Verzamelt nieuwe bedrijven in echte_leads.csv."
+    },
+    {
+      "sleutel": "mijnhost",
+      "label": "Mijn.host-jager",
+      "bestand": "mijnhost_jager.py",
+      "uitleg": "Controleer de exacte werking in het script en werk deze tekst bij."
+    },
+    {
+      "sleutel": "whatsapp",
+      "label": "WhatsApp-jager",
+      "bestand": "whatsapp_jager.py",
+      "uitleg": "Controleer de exacte werking in het script en werk deze tekst bij."
+    },
+    {
+      "sleutel": "dagstart",
+      "label": "Dagstart-briefing",
+      "bestand": "scripts/dagstart.py",
+      "uitleg": "Schrijft docs/dagstart/JJJJ-MM-DD.md met leads, terugbellers en projecten."
+    }
+  ],
+  "verbindingen": [
+    {
+      "naam": "Claude Code",
+      "categorie": "Verstand",
+      "controle": "claude",
+      "url": "https://code.claude.com/docs",
+      "uitleg": "Het brein. Start in deze map met: claude"
+    },
+    {
+      "naam": "Python",
+      "categorie": "Vanzelf",
+      "controle": "python",
+      "url": "https://www.python.org/downloads/",
+      "uitleg": "Draait je scrapers, jagers en deze Mainframe."
+    },
+    {
+      "naam": "Lead-scraper",
+      "categorie": "Verbindingen",
+      "controle": "bestand:echte_scraper.py",
+      "url": "",
+      "uitleg": "Vult echte_leads.csv."
+    },
+    {
+      "naam": "Mijn.host",
+      "categorie": "Verbindingen",
+      "status": "handmatig",
+      "url": "https://mijn.host",
+      "uitleg": "Domeinen en hosting van klantwebsites."
+    },
+    {
+      "naam": "Google Ads",
+      "categorie": "Verbindingen",
+      "status": "handmatig",
+      "url": "https://ads.google.com",
+      "uitleg": "Advertenties voor Webdesign Attila."
+    },
+    {
+      "naam": "Novamira (WordPress-MCP)",
+      "categorie": "Verbindingen",
+      "status": "handmatig",
+      "url": "https://novamira.ai/docs/getting-started",
+      "uitleg": "Laat Claude direct in WordPress-sites werken via MCP."
+    },
+    {
+      "naam": "Higgsfield",
+      "categorie": "Verbindingen",
+      "status": "handmatig",
+      "url": "https://higgsfield.ai",
+      "uitleg": "Beeld en video genereren voor klantwebsites en socials."
+    },
+    {
+      "naam": "VS Code",
+      "categorie": "Verstand",
+      "status": "handmatig",
+      "url": "https://code.visualstudio.com",
+      "uitleg": "Werkplek met de Claude Code-extensie."
+    }
+  ],
+  "prompts": [
+    {
+      "titel": "Sessie starten",
+      "tekst": "Lees CLAUDE.md en de laatste log in docs/logs/. Vat in 5 punten samen waar we gebleven waren en wat vandaag de eerste actie is."
+    },
+    {
+      "titel": "Eerst vragen, dan bouwen",
+      "tekst": "Voordat je begint: stel me maximaal 5 gerichte vragen zodat je precies weet wat ik wil. Begin pas na mijn antwoorden."
+    },
+    {
+      "titel": "Ideale situatie schetsen",
+      "tekst": "Dit is mijn probleem: [probleem]. Mijn ideale situatie is: [ideaal]. Bedenk de eenvoudigste oplossing binnen deze map, leg die in 5 stappen uit en wacht op mijn akkoord."
+    },
+    {
+      "titel": "Demo voor een lead",
+      "tekst": "Maak met /website-bouwer een demo-homepage voor [bedrijfsnaam] in [plaats] (branche: [branche]). Gebruik alleen echte gegevens uit hun Google-profiel en zet hem in klanten/[slug]/website/."
+    },
+    {
+      "titel": "Tekst langs de nooit-lijst",
+      "tekst": "Leg deze tekst langs de nooit-lijst in docs/tone-of-voice.md en zeg per zin wat eruit moet. Herschrijf daarna in mijn stem."
+    }
+  ]
+}

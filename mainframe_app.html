@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Attila Mainframe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --creme:#F7F2E8; --papier:#FFFCF6; --zand:#EADFCB; --zand-donker:#D9CAB0;
+  --olijf:#56653A; --olijf-donker:#3F4B29; --olijf-licht:#E4E8D6;
+  --goud:#A9812F; --goud-licht:#F3E7C9; --inkt:#2B2721; --inkt-zacht:#5E574B;
+  --roest:#A44A2E; --roest-licht:#F5DFD6; --blauw:#3D5A6C; --blauw-licht:#DCE6EA;
+  --lijn:#E2D7C3; --schaduw:0 1px 2px rgba(43,39,33,.05),0 8px 24px rgba(43,39,33,.06);
+  --radius:14px; --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Manrope","Segoe UI",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--inkt);font:17px/1.6 var(--sans);min-height:100vh}
+a{color:var(--olijf-donker)}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--goud);outline-offset:2px}
+
+/* ---------- layout ---------- */
+.app{display:grid;grid-template-columns:268px 1fr;min-height:100vh}
+.zijbalk{background:var(--papier);border-right:1px solid var(--lijn);padding:28px 20px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:28px}
+.merk{display:flex;gap:12px;align-items:center}
+.merk-teken{width:42px;height:42px;border-radius:12px;background:var(--olijf);color:var(--goud-licht);display:grid;place-items:center;font:700 22px/1 var(--serif);flex:none}
+.merk b{display:block;font:600 19px/1.15 var(--serif)}
+.merk small{color:var(--inkt-zacht);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+nav{display:flex;flex-direction:column;gap:4px}
+nav a{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;text-decoration:none;color:var(--inkt-zacht);font-weight:600}
+nav a svg{width:20px;height:20px;flex:none}
+nav a:hover{background:var(--creme);color:var(--inkt)}
+nav a[aria-current="page"]{background:var(--olijf-licht);color:var(--olijf-donker)}
+.zijbalk-voet{margin-top:auto;font-size:14px;color:var(--inkt-zacht);border-top:1px solid var(--lijn);padding-top:16px}
+.zijbalk-voet code{background:var(--creme);padding:2px 6px;border-radius:6px;font-size:13px}
+main{padding:40px clamp(16px,4vw,56px) 80px;max-width:1280px;width:100%}
+.scherm{display:none}
+.scherm.actief{display:block;animation:in .25s ease-out}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.scherm.actief{animation:none}}
+
+/* ---------- typografie ---------- */
+.kop{margin-bottom:28px}
+.kop .label{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--goud);font-weight:700}
+h1{font:600 clamp(32px,4vw,46px)/1.08 var(--serif);margin:6px 0 10px;letter-spacing:-.01em}
+h2{font:600 24px/1.2 var(--serif);margin:0 0 4px}
+h3{font:600 19px/1.25 var(--serif);margin:0}
+.zacht{color:var(--inkt-zacht)}
+.klein{font-size:15px}
+
+/* ---------- kaarten & grids ---------- */
+.kaart{background:var(--papier);border:1px solid var(--lijn);border-radius:var(--radius);padding:24px;box-shadow:var(--schaduw)}
+.kaart-kop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.raster{display:grid;gap:20px}
+.kpi-rij{grid-template-columns:repeat(5,minmax(0,1fr));margin-bottom:24px}
+.kpi{padding:20px 22px}
+.kpi .getal{font:600 40px/1 var(--serif);margin:10px 0 4px;font-variant-numeric:tabular-nums}
+.kpi .naam{font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--inkt-zacht)}
+.kpi.olijf{background:var(--olijf);border-color:var(--olijf);color:#fff}
+.kpi.olijf .naam{color:var(--goud-licht)}
+.twee{grid-template-columns:1.25fr 1fr;align-items:start}
+.twee > .raster{align-content:start}
+
+/* ---------- knoppen ---------- */
+.knop{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 18px;border-radius:999px;border:1px solid var(--zand-donker);background:var(--papier);font-weight:700;font-size:16px;cursor:pointer;text-decoration:none;color:var(--inkt);white-space:nowrap;transition:background .15s,border-color .15s,transform .1s}
+.knop:hover{background:var(--creme);border-color:var(--inkt-zacht)}
+.knop:active{transform:translateY(1px)}
+.knop svg{width:18px;height:18px;flex:none}
+.knop.primair{background:var(--olijf);border-color:var(--olijf);color:#fff}
+.knop.primair:hover{background:var(--olijf-donker)}
+.knop.goud{background:var(--goud);border-color:var(--goud);color:#fff}
+.knop.klein{min-height:40px;padding:8px 14px;font-size:15px}
+.knop[disabled]{opacity:.45;cursor:not-allowed}
+.knoppen{display:flex;flex-wrap:wrap;gap:10px}
+
+/* ---------- lijsten ---------- */
+.lijst{list-style:none;margin:0;padding:0}
+.lijst li{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--lijn)}
+.lijst li:last-child{border-bottom:0}
+.leeg{padding:22px;border:1px dashed var(--zand-donker);border-radius:12px;color:var(--inkt-zacht);background:var(--creme);font-size:16px}
+.script-rij{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--lijn)}
+.script-rij:last-child{border-bottom:0}
+.script-rij p{margin:2px 0 0;font-size:15px;color:var(--inkt-zacht)}
+
+/* ---------- badges ---------- */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:3px 10px;border-radius:999px;font-size:13px;font-weight:700;background:var(--zand);color:var(--inkt);white-space:nowrap}
+.badge.groen{background:var(--olijf-licht);color:var(--olijf-donker)}
+.badge.goud{background:var(--goud-licht);color:#6E531A}
+.badge.roest{background:var(--roest-licht);color:var(--roest)}
+.badge.blauw{background:var(--blauw-licht);color:var(--blauw)}
+.stip{width:8px;height:8px;border-radius:50%;background:currentColor}
+
+/* ---------- formulier ---------- */
+.veld{display:flex;flex-direction:column;gap:6px;font-size:15px;font-weight:600}
+.veld input,.veld select,.zoek input,.filter select{min-height:46px;padding:10px 14px;border-radius:10px;border:1px solid var(--zand-donker);background:#fff;font-weight:500;font-size:16px;width:100%}
+.formulier{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.formulier .heel{grid-column:1/-1}
+
+/* ---------- CRM ---------- */
+.werkbalk{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-bottom:16px}
+.zoek{flex:1 1 280px;position:relative}
+.zoek svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:18px;height:18px;color:var(--inkt-zacht)}
+.zoek input{padding-left:42px}
+.filter{flex:0 1 220px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.chip{border:1px solid var(--zand-donker);background:var(--papier);border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px;cursor:pointer;min-height:40px}
+.chip span{color:var(--inkt-zacht);font-weight:600;margin-left:4px}
+.chip[aria-pressed="true"]{background:var(--inkt);color:var(--papier);border-color:var(--inkt)}
+.chip[aria-pressed="true"] span{color:var(--zand)}
+.schakel{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;cursor:pointer}
+.schakel input{width:20px;height:20px;accent-color:var(--olijf)}
+.leads{display:grid;gap:16px}
+.lead{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:22px;padding:22px}
+.lead-naam{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.lead-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin:6px 0 14px;color:var(--inkt-zacht);font-size:15px}
+.lead-meta a{color:inherit}
+.contact-knoppen{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.contact-knoppen .knop{padding:8px 10px;font-size:15px;min-width:0}
+.contact-knoppen .knop span{overflow:hidden;text-overflow:ellipsis}
+.knop.wa{background:#EAF3E3;border-color:#BFD5AE;color:#2F5A1F}
+.status-knoppen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.status-knop{min-height:44px;border-radius:10px;border:1px solid var(--zand-donker);background:var(--papier);font-weight:700;font-size:15px;cursor:pointer;padding:8px 10px;line-height:1.2}
+.status-knop:hover{border-color:var(--inkt-zacht)}
+.status-knop[aria-pressed="true"][data-s="geen_gehoor"]{background:var(--zand);border-color:var(--zand-donker)}
+.status-knop[aria-pressed="true"][data-s="terugbellen"]{background:var(--goud-licht);border-color:var(--goud);color:#6E531A}
+.status-knop[aria-pressed="true"][data-s="afspraak"]{background:var(--olijf);border-color:var(--olijf);color:#fff}
+.status-knop[aria-pressed="true"][data-s="niet_interessant"]{background:var(--roest-licht);border-color:var(--roest);color:var(--roest)}
+.notitie{width:100%;min-height:84px;resize:vertical;border:1px solid var(--zand-donker);border-radius:10px;padding:10px 12px;background:#fff;font-size:16px;line-height:1.5}
+.notitie-voet{display:flex;justify-content:space-between;font-size:13px;color:var(--inkt-zacht);margin-top:4px;min-height:20px}
+.paginering{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:24px}
+.kolominfo{font-size:14px;color:var(--inkt-zacht);margin-top:6px}
+
+/* ---------- skills ---------- */
+.skills{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.skill{display:flex;flex-direction:column;gap:12px}
+.skill code{font:700 18px/1.2 ui-monospace,"Cascadia Code",Consolas,monospace;color:var(--olijf-donker)}
+.skill p{margin:0;color:var(--inkt-zacht);font-size:16px;flex:1;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.prompt{display:flex;gap:16px;justify-content:space-between;align-items:flex-start}
+.prompt p{margin:6px 0 0;font-size:16px;color:var(--inkt-zacht)}
+
+/* ---------- verbindingen ---------- */
+.verbindingen{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.verbinding{display:flex;flex-direction:column;gap:10px}
+.verbinding .knop{align-self:flex-start;margin-top:auto}
+.groep-titel{margin:28px 0 14px;font:600 14px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--goud)}
+
+/* ---------- toast ---------- */
+.toast{visibility:hidden;opacity:0;position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--inkt);color:var(--papier);padding:14px 22px;border-radius:12px;font-weight:600;box-shadow:var(--schaduw);transition:transform .25s,opacity .25s,visibility .25s;z-index:20;max-width:calc(100vw - 32px)}
+.toast.zichtbaar{transform:translateX(-50%) translateY(0);visibility:visible;opacity:1}
+.toast.fout{background:var(--roest)}
+
+/* ---------- responsief ---------- */
+@media (max-width:1180px){.kpi-rij{grid-template-columns:repeat(3,minmax(0,1fr))}.lead{grid-template-columns:1fr}}
+@media (max-width:960px){
+  .app{grid-template-columns:1fr}
+  .zijbalk{position:sticky;top:0;height:auto;flex-direction:row;align-items:center;padding:12px 16px;gap:12px;z-index:10;border-right:0;border-bottom:1px solid var(--lijn);overflow-x:auto}
+  .merk small,.zijbalk-voet{display:none}
+  .merk b{font-size:17px;white-space:nowrap}
+  @media (max-width:480px){.merk div:last-child{display:none}}
+  nav{flex-direction:row;gap:2px}
+  nav a{padding:10px 12px;white-space:nowrap}
+  nav a .tekst{display:none}
+  .twee{grid-template-columns:1fr}
+  main{padding-top:28px}
+}
+@media (max-width:620px){
+  body{font-size:17px}
+  .kpi-rij{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kpi .getal{font-size:34px}
+  .contact-knoppen{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .formulier{grid-template-columns:1fr}
+  .kaart{padding:18px}
+  .script-rij{flex-direction:column;align-items:flex-start}
+  .prompt{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="zijbalk">
+    <div class="merk">
+      <div class="merk-teken" aria-hidden="true">A</div>
+      <div><b>Webdesign Attila</b><small>Mainframe 2.0</small></div>
+    </div>
+    <nav aria-label="Hoofdmenu">
+      <a href="#overzicht" data-scherm="overzicht"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg><span class="tekst">Overzicht</span></a>
+      <a href="#leads" data-scherm="leads"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="tekst">Lead &amp; Bel-CRM</span></a>
+      <a href="#skills" data-scherm="skills"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2z"/><path d="M8 7h6M8 11h6"/></svg><span class="tekst">Skills &amp; Prompts</span></a>
+      <a href="#verbindingen" data-scherm="verbindingen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span class="tekst">Verbindingen</span></a>
+    </nav>
+    <div class="zijbalk-voet">
+      Claude starten in deze map:<br><code>claude</code><br><br>
+      Sessie afsluiten: <code>/einde</code>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ===================== SCHERM 1 ===================== -->
+    <section class="scherm" id="scherm-overzicht" aria-labelledby="t-overzicht">
+      <div class="kop">
+        <div class="label" id="datum-label">Dagstart</div>
+        <h1 id="t-overzicht">Goedemorgen, Attila.</h1>
+        <p class="zacht" id="dag-samenvatting">Even je bestanden lezen…</p>
+      </div>
+
+      <div class="raster kpi-rij" id="kpis"></div>
+
+      <div class="raster twee">
+        <div class="raster">
+          <div class="kaart">
+            <div class="kaart-kop"><div><h2>Terugbellen</h2><p class="zacht klein">Leads die je op "Terugbellen" hebt gezet.</p></div><a class="knop klein" href="#leads" data-ga-filter="terugbellen">Alle leads</a></div>
+            <ul class="lijst" id="terugbellen"></ul>
+          </div>
+          <div class="kaart">
+            <div class="kaart-kop"><div><h2>Klantprojecten</h2><p class="zacht klein">Uit <code>klanten/</code>. Status pas je aan in <code>klantprofiel.md</code>.</p></div></div>
+            <ul class="lijst" id="klanten"></ul>
+          </div>
+        </div>
+        <div class="raster">
+          <div class="kaart">
+            <div class="kaart-kop"><div><h2>Start je machines</h2><p class="zacht klein">Elk script opent in een eigen venster.</p></div></div>
+            <div id="scripts"></div>
+          </div>
+          <div class="kaart">
+            <div class="kaart-kop"><div><h2>Nieuwe klant</h2><p class="zacht klein">Maakt <code>klanten/[naam]/</code> met profiel en checklist.</p></div></div>
+            <form id="klant-form" class="formulier" autocomplete="off">
+              <label class="veld heel">Bedrijfsnaam<input name="bedrijfsnaam" required maxlength="120" placeholder="Bijv. Hoveniersbedrijf Groen"></label>
+              <label class="veld">Branche<input name="branche" maxlength="80" placeholder="Hovenier"></label>
+              <label class="veld">Plaats<input name="plaats" maxlength="80" placeholder="Zwolle"></label>
+              <label class="veld">Pakket<select name="pakket"><option value="">Nog kiezen</option><option>Start</option><option>Groei</option><option>Premium</option><option>Maatwerk</option></select></label>
+              <label class="veld">Contact<input name="contact" maxlength="160" placeholder="Naam, 06-…"></label>
+              <div class="heel"><button class="knop primair" type="submit">Klantmap aanmaken</button></div>
+            </form>
+          </div>
+          <div class="kaart">
+            <div class="kaart-kop"><div><h2>Laatst gemaild</h2><p class="zacht klein">Onderaan <code>verzonden.txt</code>.</p></div></div>
+            <ul class="lijst" id="verzonden"></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SCHERM 2 ===================== -->
+    <section class="scherm" id="scherm-leads" aria-labelledby="t-leads">
+      <div class="kop">
+        <div class="label">Gekoppeld aan echte_leads.csv</div>
+        <h1 id="t-leads">Lead &amp; Bel-CRM</h1>
+        <p class="zacht">Status en notities worden direct opgeslagen in <code>leads_status.json</code>. Je CSV blijft onaangeroerd.</p>
+        <p class="kolominfo" id="kolominfo"></p>
+      </div>
+      <div class="werkbalk">
+        <label class="zoek"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="zoek" type="search" placeholder="Zoek op naam, plaats, telefoon of notitie" aria-label="Zoeken"></label>
+        <label class="filter"><select id="branche" aria-label="Branche"><option value="">Alle branches</option></select></label>
+        <label class="schakel"><input type="checkbox" id="niet-gemaild"> Nog niet gemaild</label>
+        <label class="schakel"><input type="checkbox" id="met-telefoon"> Met telefoon</label>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter op status"></div>
+      <div class="leads" id="leads"></div>
+      <div class="paginering" id="paginering"></div>
+    </section>
+
+    <!-- ===================== SCHERM 3 ===================== -->
+    <section class="scherm" id="scherm-skills" aria-labelledby="t-skills">
+      <div class="kop">
+        <div class="label">Vaardigheden · .claude/skills/</div>
+        <h1 id="t-skills">Skills &amp; Prompts</h1>
+        <p class="zacht">Kopieer een commando en plak het in Claude Code (in VS Code of de terminal, gestart in deze map).</p>
+      </div>
+      <div class="raster skills" id="skills"></div>
+      <h2 class="groep-titel">Vaste prompts</h2>
+      <div class="raster" id="prompts"></div>
+    </section>
+
+    <!-- ===================== SCHERM 4 ===================== -->
+    <section class="scherm" id="scherm-verbindingen" aria-labelledby="t-verbindingen">
+      <div class="kop">
+        <div class="label">Verbindingen · mainframe_config.json</div>
+        <h1 id="t-verbindingen">Verbindingen &amp; accounts</h1>
+        <p class="zacht">Groen wordt automatisch gecontroleerd op deze computer. "Handmatig" betekent: account bestaat buiten de Mainframe, open hem via de link.</p>
+      </div>
+      <div id="verbindingen"></div>
+    </section>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const STATUS = {
+    geen_gehoor: "Geen gehoor",
+    terugbellen: "Terugbellen",
+    afspraak: "Afspraak / Demo maken",
+    niet_interessant: "Niet interessant"
+  };
+  const STATUS_KORT = { nieuw: "Nieuw", geen_gehoor: "Geen gehoor", terugbellen: "Terugbellen", afspraak: "Afspraak / Demo", niet_interessant: "Niet interessant" };
+  const STATUS_KLEUR = { geen_gehoor: "", terugbellen: "goud", afspraak: "groen", niet_interessant: "roest" };
+  const PER_PAGINA = 25;
+  const staat = { leads: [], config: {}, filter: "alle", zoek: "", branche: "", nietGemaild: false, metTelefoon: false, pagina: 1 };
+
+  // ---------- hulpfuncties ----------
+  const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  const veiligeUrl = (u) => /^https?:\/\//i.test(u || "") ? u : "";
+  const opslag = {
+    lees(k, s) { try { const v = localStorage.getItem("mf_" + k); return v === null ? s : JSON.parse(v); } catch { return s; } },
+    zet(k, v) { try { localStorage.setItem("mf_" + k, JSON.stringify(v)); } catch { /* geen opslag beschikbaar */ } }
+  };
+  let toastTimer;
+  function toast(tekst, fout = false) {
+    const t = $("#toast");
+    t.textContent = tekst;
+    t.classList.toggle("fout", fout);
+    t.classList.add("zichtbaar");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("zichtbaar"), 3200);
+  }
+  async function api(pad, data) {
+    const opties = data === undefined ? {} : {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "X-Mainframe": "1" },
+      body: JSON.stringify(data)
+    };
+    const r = await fetch(pad, opties);
+    const json = await r.json().catch(() => ({ ok: false, fout: "Onleesbaar antwoord van de server" }));
+    if (!r.ok || json.ok === false) throw new Error(json.fout || `Fout ${r.status}`);
+    return json;
+  }
+  function vul(sjabloon, lead) {
+    return String(sjabloon || "")
+      .replaceAll("{naam}", lead.naam || "")
+      .replaceAll("{plaats}", lead.plaats || "jullie regio")
+      .replaceAll("{branche}", lead.branche || "");
+  }
+  async function kopieer(tekst) {
+    try { await navigator.clipboard.writeText(tekst); }
+    catch {
+      const ta = document.createElement("textarea");
+      ta.value = tekst; document.body.appendChild(ta); ta.select();
+      document.execCommand("copy"); ta.remove();
+    }
+    toast(`Gekopieerd: ${tekst.length > 60 ? tekst.slice(0, 57) + "…" : tekst}`);
+  }
+  const ICON = {
+    bel: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>',
+    wa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 10c0 3 2 5 5 5l1-1.5-2-1-1 1c-1 0-2-1-2-2l1-1-1-2z"/></svg>',
+    mail: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>',
+    web: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>',
+    kopie: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+    start: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+    link: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>'
+  };
+
+  // ---------- navigatie ----------
+  const SCHERMEN = ["overzicht", "leads", "skills", "verbindingen"];
+  const geladen = {};
+  function toonScherm() {
+    const naam = SCHERMEN.includes(location.hash.slice(1)) ? location.hash.slice(1) : "overzicht";
+    $$(".scherm").forEach((s) => s.classList.toggle("actief", s.id === "scherm-" + naam));
+    $$("nav a").forEach((a) => {
+      if (a.dataset.scherm === naam) a.setAttribute("aria-current", "page");
+      else a.removeAttribute("aria-current");
+    });
+    const laders = { overzicht: laadOverzicht, leads: laadLeads, skills: laadSkills, verbindingen: laadVerbindingen };
+    if (naam === "overzicht" || naam === "leads" || !geladen[naam]) { geladen[naam] = true; laders[naam](); }
+    window.scrollTo({ top: 0 });
+  }
+  window.addEventListener("hashchange", toonScherm);
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest("[data-ga-filter]");
+    if (a) { staat.filter = a.dataset.gaFilter; staat.pagina = 1; opslag.zet("filter", staat.filter); }
+  });
+
+  // ---------- scherm 1: overzicht ----------
+  async function laadOverzicht() {
+    let d;
+    try { d = await api("/api/overzicht"); }
+    catch (e) { $("#dag-samenvatting").textContent = "Kon de Mainframe-server niet bereiken: " + e.message; return; }
+    const uur = new Date().getHours();
+    $("#t-overzicht").textContent = (uur < 12 ? "Goedemorgen" : uur < 18 ? "Goedemiddag" : "Goedenavond") + ", Attila.";
+    $("#datum-label").textContent = "Dagstart · " + new Date().toLocaleDateString("nl-NL", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    const ps = d.per_status || {};
+    const openKlanten = d.klanten.filter((k) => !["live", "onderhoud", "gearchiveerd"].includes(k.status)).length;
+    const nieuw = ps.nieuw || 0;
+    $("#dag-samenvatting").textContent = d.leads_bestand
+      ? `${nieuw} ${nieuw === 1 ? "lead" : "leads"} nog niet gebeld · ${ps.terugbellen || 0} ${(ps.terugbellen || 0) === 1 ? "terugbeller" : "terugbellers"} · ${openKlanten} ${openKlanten === 1 ? "lopend project" : "lopende projecten"}.` + (d.laatste_log ? ` Laatste log: ${d.laatste_log.replace(".md", "")}.` : "")
+      : "echte_leads.csv staat (nog) niet in deze map. Zet hem naast start_mainframe.py of start je scraper.";
+    const kpis = [
+      ["Leads in CSV", d.leads_totaal, "olijf", d.leads_bestand ? "" : "bestand ontbreekt"],
+      ["Mails verzonden", d.verzonden_totaal, "", d.verzonden_bestand ? "" : "bestand ontbreekt"],
+      ["Terugbellen", ps.terugbellen || 0, "", ""],
+      ["Afspraken", ps.afspraak || 0, "", ""],
+      ["Open projecten", openKlanten, "", ""]
+    ];
+    $("#kpis").innerHTML = kpis.map(([n, g, k, sub]) =>
+      `<div class="kaart kpi ${k}"><div class="naam">${esc(n)}</div><div class="getal">${Number(g).toLocaleString("nl-NL")}</div>${sub ? `<div class="klein">${esc(sub)}</div>` : ""}</div>`).join("");
+
+    $("#terugbellen").innerHTML = d.terugbellen.length ? d.terugbellen.map((l) =>
+      `<li><div><b>${esc(l.naam)}</b><div class="zacht klein">${esc([l.branche, l.plaats].filter(Boolean).join(" · "))}${l.notitie ? " — " + esc(l.notitie.slice(0, 80)) : ""}</div></div>
+       ${l.telefoon ? `<a class="knop klein primair" href="tel:${esc(l.telefoon.replace(/[^\d+]/g, ""))}">${ICON.bel}Bel</a>` : ""}</li>`).join("")
+      : `<li class="leeg">Niemand staat op terugbellen. Zet in het CRM een lead op "Terugbellen" en hij verschijnt hier.</li>`;
+
+    $("#klanten").innerHTML = d.klanten.length ? d.klanten.map((k) => {
+      const totaal = k.taken_open + k.taken_klaar;
+      return `<li><div><b>${esc(k.naam)}</b><div class="zacht klein">${esc([k.pakket, k.plaats, k.deadline && "deadline " + k.deadline].filter(Boolean).join(" · "))}${totaal ? ` · checklist ${k.taken_klaar}/${totaal}` : ""}</div></div>
+        <span class="badge ${k.status === "live" ? "groen" : k.status === "lead" ? "" : "goud"}"><span class="stip"></span>${esc(k.status)}</span></li>`;
+    }).join("") : `<li class="leeg">Nog geen klantmappen. Maak er hiernaast een aan, of typ <code>/nieuw-klant</code> in Claude.</li>`;
+
+    $("#scripts").innerHTML = d.scripts.map((s) =>
+      `<div class="script-rij"><div><b>${esc(s.label)}</b> ${s.aanwezig ? "" : '<span class="badge roest">niet in map</span>'}<p>${esc(s.bestand)} — ${esc(s.uitleg || "")}</p></div>
+       <button class="knop klein ${s.aanwezig ? "primair" : ""}" data-script="${esc(s.sleutel)}" ${s.aanwezig ? "" : "disabled"}>${ICON.start}Start</button></div>`).join("")
+      || `<div class="leeg">Geen scripts ingesteld in mainframe_config.json.</div>`;
+
+    $("#verzonden").innerHTML = d.verzonden_laatste.length
+      ? d.verzonden_laatste.map((v) => `<li><span>${esc(v)}</span></li>`).join("")
+      : `<li class="leeg">${d.verzonden_bestand ? "verzonden.txt is leeg." : "verzonden.txt staat (nog) niet in deze map."}</li>`;
+  }
+  document.addEventListener("click", async (e) => {
+    const knop = e.target.closest("[data-script]");
+    if (!knop) return;
+    knop.disabled = true;
+    try { const r = await api("/api/scripts/start", { sleutel: knop.dataset.script }); toast(r.melding); }
+    catch (err) { toast(err.message, true); }
+    finally { setTimeout(() => { knop.disabled = false; }, 1500); }
+  });
+  $("#klant-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = Object.fromEntries(new FormData(form));
+    try {
+      const r = await api("/api/klanten", data);
+      toast(`Klantmap aangemaakt: ${r.map}/`);
+      form.reset();
+      laadOverzicht();
+    } catch (err) { toast(err.message, true); }
+  });
+
+  // ---------- scherm 2: CRM ----------
+  async function laadLeads() {
+    staat.filter = opslag.lees("filter", staat.filter);
+    try {
+      const d = await api("/api/leads");
+      staat.leads = d.leads; staat.config = d.config;
+      const k = d.info.koppeling || {};
+      $("#kolominfo").textContent = d.info.bestand_gevonden
+        ? `Herkende kolommen: ${Object.entries(k).map(([veld, kol]) => `${veld} → "${kol}"`).join(", ") || "geen"}.`
+        : "";
+      const branches = [...new Set(staat.leads.map((l) => l.branche).filter(Boolean))].sort((a, b) => a.localeCompare(b, "nl"));
+      const sel = $("#branche");
+      const huidig = staat.branche;
+      sel.innerHTML = `<option value="">Alle branches</option>` + branches.map((b) => `<option ${b === huidig ? "selected" : ""}>${esc(b)}</option>`).join("");
+      if (!d.info.bestand_gevonden) {
+        $("#chips").innerHTML = "";
+        $("#leads").innerHTML = `<div class="leeg">echte_leads.csv staat niet in de Mainframe-map. Zet het bestand naast <code>start_mainframe.py</code> en ververs deze pagina.</div>`;
+        $("#paginering").innerHTML = "";
+        return;
+      }
+      tekenLeads();
+    } catch (e) {
+      $("#leads").innerHTML = `<div class="leeg">Leads laden mislukt: ${esc(e.message)}</div>`;
+    }
+  }
+  function gefilterd() {
+    const z = staat.zoek.trim().toLowerCase();
+    return staat.leads.filter((l) => {
+      const s = l.status || "nieuw";
+      if (staat.filter !== "alle" && s !== staat.filter) return false;
+      if (staat.branche && l.branche !== staat.branche) return false;
+      if (staat.nietGemaild && l.al_gemaild) return false;
+      if (staat.metTelefoon && !l.telefoon) return false;
+      if (z && ![l.naam, l.plaats, l.telefoon, l.branche, l.email, l.website, l.notitie].join(" ").toLowerCase().includes(z)) return false;
+      return true;
+    });
+  }
+  function tekenChips() {
+    const tel = { alle: staat.leads.length, nieuw: 0, geen_gehoor: 0, terugbellen: 0, afspraak: 0, niet_interessant: 0 };
+    staat.leads.forEach((l) => { tel[l.status || "nieuw"]++; });
+    $("#chips").innerHTML = [["alle", "Alle"], ...Object.entries(STATUS_KORT)].map(([k, n]) =>
+      `<button class="chip" data-filter="${k}" aria-pressed="${staat.filter === k}">${esc(n)}<span>${tel[k]}</span></button>`).join("");
+  }
+  function leadKaart(l) {
+    const tel = l.telefoon.replace(/[^\d+]/g, "");
+    const wa = l.whatsapp ? `https://wa.me/${l.whatsapp}?text=${encodeURIComponent(vul(staat.config.whatsapp_bericht, l))}` : "";
+    const adres = (l.email || "").replace(/[^\w.+\-@]/g, "");
+    const mail = adres.includes("@") ? `mailto:${adres}?subject=${encodeURIComponent(vul(staat.config.mail_onderwerp, l))}&body=${encodeURIComponent(vul(staat.config.mail_bericht, l))}` : "";
+    const site = veiligeUrl(l.website);
+    const meta = [
+      l.branche && esc(l.branche),
+      l.plaats && esc(l.plaats),
+      l.telefoon && `<a href="tel:${esc(tel)}">${esc(l.telefoon)}</a>`,
+      l.email && esc(l.email),
+      l.rating && `★ ${esc(l.rating)}${l.reviews ? ` (${esc(l.reviews)})` : ""}`
+    ].filter(Boolean).map((m) => `<span>${m}</span>`).join("");
+    const knop = (href, icon, tekst, klasse = "", extern = false) => href
+      ? `<a class="knop klein ${klasse}" href="${esc(href)}" ${extern ? 'target="_blank" rel="noopener noreferrer"' : ""}>${icon}<span>${tekst}</span></a>`
+      : `<span class="knop klein" aria-disabled="true" style="opacity:.4">${icon}<span>${tekst}</span></span>`;
+    return `<article class="kaart lead" data-id="${esc(l.id)}">
+      <div>
+        <div class="lead-naam"><h3>${esc(l.naam)}</h3>
+          ${l.status ? `<span class="badge ${STATUS_KLEUR[l.status]}">${esc(STATUS_KORT[l.status])}</span>` : `<span class="badge blauw">Nieuw</span>`}
+          ${l.al_gemaild ? `<span class="badge groen">Al gemaild</span>` : ""}
+          ${site ? "" : `<span class="badge roest">Geen website</span>`}</div>
+        <div class="lead-meta">${meta || "<span>Geen extra gegevens</span>"}</div>
+        <div class="contact-knoppen">
+          ${knop(tel && `tel:${tel}`, ICON.bel, "Bel", "primair")}
+          ${knop(wa, ICON.wa, "WhatsApp", "wa", true)}
+          ${knop(mail, ICON.mail, "E-mail")}
+          ${knop(site, ICON.web, "Website", "", true)}
+        </div>
+      </div>
+      <div>
+        <div class="status-knoppen">${Object.entries(STATUS).map(([k, n]) =>
+          `<button class="status-knop" data-s="${k}" aria-pressed="${l.status === k}">${esc(n)}</button>`).join("")}</div>
+        <textarea class="notitie" placeholder="Notitie (wordt automatisch opgeslagen)" aria-label="Notitie voor ${esc(l.naam)}">${esc(l.notitie)}</textarea>
+        <div class="notitie-voet"><span class="opgeslagen"></span><span>${l.bijgewerkt ? "Bijgewerkt " + esc(l.bijgewerkt) : ""}</span></div>
+      </div>
+    </article>`;
+  }
+  function tekenLeads() {
+    tekenChips();
+    const lijst = gefilterd();
+    const paginas = Math.max(1, Math.ceil(lijst.length / PER_PAGINA));
+    staat.pagina = Math.min(staat.pagina, paginas);
+    const stuk = lijst.slice((staat.pagina - 1) * PER_PAGINA, staat.pagina * PER_PAGINA);
+    $("#leads").innerHTML = stuk.length ? stuk.map(leadKaart).join("") : `<div class="leeg">Geen leads gevonden met deze filters.</div>`;
+    $("#paginering").innerHTML = paginas > 1
+      ? `<button class="knop klein" data-pagina="-1" ${staat.pagina === 1 ? "disabled" : ""}>Vorige</button>
+         <span class="zacht">Pagina ${staat.pagina} van ${paginas} · ${lijst.length} leads</span>
+         <button class="knop klein" data-pagina="1" ${staat.pagina === paginas ? "disabled" : ""}>Volgende</button>`
+      : `<span class="zacht">${lijst.length} leads</span>`;
+  }
+  const vindLead = (id) => staat.leads.find((l) => l.id === id);
+  async function bewaar(id, wijziging, kaart) {
+    const voet = kaart && $(".opgeslagen", kaart);
+    if (voet) voet.textContent = "Opslaan…";
+    try {
+      const r = await api("/api/leads/status", { id, ...wijziging });
+      const lead = vindLead(id);
+      Object.assign(lead, { status: r.item.status || "", notitie: r.item.notitie || "", bijgewerkt: r.item.bijgewerkt });
+      if (voet) voet.textContent = "Opgeslagen ✓";
+      return true;
+    } catch (e) {
+      if (voet) voet.textContent = "Niet opgeslagen!";
+      toast("Opslaan mislukt: " + e.message, true);
+      return false;
+    }
+  }
+  $("#scherm-leads").addEventListener("click", async (e) => {
+    const chip = e.target.closest("[data-filter]");
+    if (chip) { staat.filter = chip.dataset.filter; staat.pagina = 1; opslag.zet("filter", staat.filter); tekenLeads(); return; }
+    const pag = e.target.closest("[data-pagina]");
+    if (pag) { staat.pagina += Number(pag.dataset.pagina); tekenLeads(); window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+    const sk = e.target.closest(".status-knop");
+    if (sk) {
+      const kaart = sk.closest(".lead");
+      const lead = vindLead(kaart.dataset.id);
+      const nieuw = lead.status === sk.dataset.s ? "" : sk.dataset.s;
+      if (await bewaar(lead.id, { status: nieuw }, kaart)) {
+        toast(nieuw ? `${lead.naam}: ${STATUS[nieuw]}` : `${lead.naam}: status gewist`);
+        const scroll = window.scrollY; tekenLeads(); window.scrollTo({ top: scroll });
+      }
+    }
+  });
+  const notitieTimers = new Map();
+  $("#scherm-leads").addEventListener("input", (e) => {
+    if (!e.target.classList.contains("notitie")) return;
+    const kaart = e.target.closest(".lead");
+    const id = kaart.dataset.id;
+    $(".opgeslagen", kaart).textContent = "Typen…";
+    clearTimeout(notitieTimers.get(id));
+    notitieTimers.set(id, setTimeout(() => { notitieTimers.delete(id); bewaar(id, { notitie: e.target.value }, kaart); }, 700));
+  });
+  $("#scherm-leads").addEventListener("focusout", (e) => {
+    if (!e.target.classList.contains("notitie")) return;
+    const kaart = e.target.closest(".lead");
+    const id = kaart.dataset.id;
+    if (notitieTimers.has(id)) { clearTimeout(notitieTimers.get(id)); notitieTimers.delete(id); bewaar(id, { notitie: e.target.value }, kaart); }
+  });
+  let zoekTimer;
+  $("#zoek").addEventListener("input", (e) => { clearTimeout(zoekTimer); zoekTimer = setTimeout(() => { staat.zoek = e.target.value; staat.pagina = 1; tekenLeads(); }, 150); });
+  $("#branche").addEventListener("change", (e) => { staat.branche = e.target.value; staat.pagina = 1; tekenLeads(); });
+  $("#niet-gemaild").addEventListener("change", (e) => { staat.nietGemaild = e.target.checked; staat.pagina = 1; tekenLeads(); });
+  $("#met-telefoon").addEventListener("change", (e) => { staat.metTelefoon = e.target.checked; staat.pagina = 1; tekenLeads(); });
+
+  // ---------- scherm 3: skills ----------
+  async function laadSkills() {
+    try {
+      const d = await api("/api/skills");
+      $("#skills").innerHTML = d.skills.length ? d.skills.map((s) =>
+        `<div class="kaart skill"><div class="kaart-kop" style="margin:0"><code>${esc(s.commando)}</code>${s.eigen ? '<span class="badge groen">eigen</span>' : '<span class="badge">geïnstalleerd</span>'}</div>
+         <p title="${esc(s.beschrijving)}">${esc(s.beschrijving)}</p>
+         <button class="knop klein" data-kopieer="${esc(s.commando + (s.voorbeeld ? " " : ""))}">${ICON.kopie}Kopieer commando</button></div>`).join("")
+        : `<div class="leeg">Geen skills gevonden in .claude/skills/.</div>`;
+      $("#prompts").innerHTML = d.prompts.map((p) =>
+        `<div class="kaart prompt"><div><h3>${esc(p.titel)}</h3><p>${esc(p.tekst)}</p></div>
+         <button class="knop klein" data-kopieer="${esc(p.tekst)}">${ICON.kopie}Kopieer</button></div>`).join("");
+    } catch (e) { $("#skills").innerHTML = `<div class="leeg">Skills laden mislukt: ${esc(e.message)}</div>`; }
+  }
+  document.addEventListener("click", (e) => { const k = e.target.closest("[data-kopieer]"); if (k) kopieer(k.dataset.kopieer); });
+
+  // ---------- scherm 4: verbindingen ----------
+  async function laadVerbindingen() {
+    try {
+      const d = await api("/api/verbindingen");
+      const groepen = {};
+      d.verbindingen.forEach((v) => { (groepen[v.categorie || "Overig"] ||= []).push(v); });
+      const badge = (s) => s === "actief" ? '<span class="badge groen"><span class="stip"></span>Actief</span>'
+        : s === "niet_gevonden" ? '<span class="badge roest"><span class="stip"></span>Niet gevonden</span>'
+        : '<span class="badge goud"><span class="stip"></span>Handmatig</span>';
+      $("#verbindingen").innerHTML = Object.entries(groepen).map(([g, items]) =>
+        `<h2 class="groep-titel">${esc(g)}</h2><div class="raster verbindingen">${items.map((v) => {
+          const url = veiligeUrl(v.url);
+          return `<div class="kaart verbinding"><div class="kaart-kop" style="margin:0"><h3>${esc(v.naam)}</h3>${badge(v.status)}</div>
+            <p class="zacht klein" style="margin:0">${esc(v.uitleg || "")}${v.detail ? `<br><b>${esc(v.detail)}</b>` : ""}</p>
+            ${url ? `<a class="knop klein" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${ICON.link}Openen</a>` : ""}</div>`;
+        }).join("")}</div>`).join("");
+    } catch (e) { $("#verbindingen").innerHTML = `<div class="leeg">Verbindingen laden mislukt: ${esc(e.message)}</div>`; }
+  }
+
+  toonScherm();
+})();
+</script>
+</body>
+</html>
