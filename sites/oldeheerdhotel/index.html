@@ -10,7 +10,7 @@
 <meta property="og:description" content="Negen kamers met eigen badkamer, een eetcafé met terras en een feestzaal voor 100 personen in Balkbrug.">
 <meta property="og:image" content="share.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.png" type="image/png">
 <meta name="theme-color" content="#ecebe7">
 <!-- <link rel="canonical" href="https://oldeheerdhotel.nl/"> -->
 <meta name="site-kind" content="other">
@@ -45,6 +45,7 @@
 <link rel="modulepreload" href="assets/moments/picture-develops/moment.js">
 <!-- page CSS: the visit panel, the photographs' frames and the name in the close -->
 <style>
+  .nav__logo .logo-img { height: 36px; width: auto; border-radius: 2px; }
   .near { display: grid; grid-template-columns: 1fr auto; gap: var(--s-2) var(--s-5); margin: 0; font-variant-numeric: tabular-nums; }
   .near dd { margin: 0; text-align: right; }
   .trio { align-items: start; }
@@ -100,14 +101,14 @@
 <body>
 <!-- type: place (hotel en eetcafé)
      deal: hero place, nav nav-split, close close-word (type moment: name), footer footer-visit, rhythm colour-band,
-           buttons arrow, mark stack, offer tall-small, place trio, rooms row (not used: one room photograph)
+           buttons arrow, mark the client's own sign (cropped from its shopfront photograph), offer tall-small, place trio, rooms row (not used: one room photograph)
      palette olive-on-bone, type besley / albert sans
      moments: picture-develops on the eetcafé's photograph (#eetcafe) -->
 
 <header class="nav nav--split">
   <div class="wrap nav__bar">
     <a class="skip-link" href="#top">Naar de inhoud</a>
-    <a class="nav__logo" href="#top"><span class="mark" data-mark="stack" aria-hidden="true"></span>d'Olde Heerd</a>
+    <a class="nav__logo" href="#top"><img class="logo-img" src="img/logo.jpg" width="464" height="224" alt="">d'Olde Heerd</a>
     <nav class="nav__links" aria-label="Hoofdmenu">
       <div class="nav__item"><a class="nav__link" href="#kamers">Kamers</a></div>
       <div class="nav__item">
