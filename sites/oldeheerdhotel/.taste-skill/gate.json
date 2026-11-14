@@ -1,0 +1,459 @@
+{
+ "start": "2026-11-14T19:16:59.116Z",
+ "round": 3,
+ "idle": 0,
+ "errors": 0,
+ "status": "open",
+ "history": [
+  {
+   "at": "2026-11-14T19:56:44.979Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 4,
+   "round": 1,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-14T19:59:13.844Z",
+   "mode": "manual",
+   "status": "fail",
+   "fails": 3,
+   "round": 2,
+   "reused": false,
+   "stopHookActive": false
+  },
+  {
+   "at": "2026-11-14T20:01:12.068Z",
+   "mode": "manual",
+   "status": "open",
+   "fails": 3,
+   "round": 3,
+   "reused": false,
+   "stopHookActive": false
+  }
+ ],
+ "max": 3,
+ "marker": {
+  "page": "index.html",
+  "url": null,
+  "root": null,
+  "kind": "place",
+  "category": "hotel met kamers, eetcafé en feestzaal",
+  "primary": "Boek een kamer",
+  "rounds": 3,
+  "start": "2026-11-14T19:16:59.116Z",
+  "by": "gate.mjs --start"
+ },
+ "manual": true,
+ "roundKey": "f1eaab8e001bdf79:9bfa8332",
+ "roundFree": false,
+ "idleFree": false,
+ "blockKey": null,
+ "fp": "f1eaab8e001bdf79",
+ "page": "index.html",
+ "found": {
+  "fails": [
+   {
+    "check": "street-number",
+    "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"Zwolseweg 116\"",
+    "msg": "a street with its house number: \"Zwolseweg 116\"; a real door, which the brief does not give (and 2 more like it: div.closing__links > div.grid > div.span-6.stack-4:nth-of-type(1) > address.footer__address, div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(2) > a.link)",
+    "fix": "print the street and the district only (\"Weserstraße, Berlin-Neukölln\"): no house number, unless the brief gives the address",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "street-number"
+    ],
+    "wheres": [
+     "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"Zwolseweg 116\""
+    ]
+   },
+   {
+    "check": "postcode",
+    "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"7707 AL Balkbrug\"",
+    "msg": "a Dutch postcode: \"7707 AL Balkbrug\"; with the street it points at one building, which the brief does not give",
+    "fix": "drop the postcode: the street and the district say where it is (copy.md, Address)",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "postcode"
+    ],
+    "wheres": [
+     "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"7707 AL Balkbrug\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) \"06 29482202\"",
+    "msg": "a phone number with its area code: \"06 29482202\"; a visitor can dial it and reach a stranger (and 1 more like it: div.grid > div.span-6.start-7 > dl.near > dd:nth-of-type(1))",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) \"06 29482202\""
+    ]
+   },
+   {
+    "check": "phone-number",
+    "where": "div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) > a.link \"tel:+31629482202\"",
+    "msg": "a tel: link calls a number in a real dialable format: \"tel:+31629482202\"; a visitor can dial it and reach a stranger (and 2 more like it: section#groepen > div.wrap > div.grid > a.order.tile:nth-of-type(3), div.span-6.start-7 > dl.near > dd:nth-of-type(1) > a)",
+    "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "phone-number"
+    ],
+    "wheres": [
+     "div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) > a.link \"tel:+31629482202\""
+    ]
+   },
+   {
+    "check": "row-lines",
+    "where": "section#kamers > div.wrap > div.grid.trio",
+    "msg": "a row of 3 items: its items are 542/384/212px tall, not one height (2px either way) (SR-7)",
+    "fix": "start the row's first item on the container's left line and end its last on the right line, every item one height",
+    "widths": [
+     1440
+    ],
+    "from": "consistency",
+    "ids": [
+     "row-lines"
+    ],
+    "wheres": [
+     "section#kamers > div.wrap > div.grid.trio"
+    ]
+   },
+   {
+    "check": "scroll-reveal",
+    "where": "div.wrap > div.closing__cta.close--word > div.section-head--split > a.btn.btn--primary \"Boek een kamer\"",
+    "msg": "starts \"color\" (0.1 s) the moment it is scrolled into view (an IntersectionObserver)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "scroll-reveal"
+    ],
+    "wheres": [
+     "div.wrap > div.closing__cta.close--word > div.section-head--split > a.btn.btn--primary \"Boek een kamer\""
+    ]
+   },
+   {
+    "check": "contrast",
+    "where": "div.wrap > div.grid > a.order.tile:nth-of-type(1) > span.link \"Mail over de zaal\"",
+    "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1)",
+    "fix": "put the text on a calm part of the picture, or on a solid panel",
+    "widths": [
+     390
+    ],
+    "from": "consistency",
+    "ids": [
+     "contrast"
+    ],
+    "wheres": [
+     "div.wrap > div.grid > a.order.tile:nth-of-type(1) > span.link \"Mail over de zaal\""
+    ]
+   },
+   {
+    "check": "hero-lines",
+    "where": "section.hero h1",
+    "msg": "the check fills the h1 to 48 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 1440, 2 at most",
+    "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "layout",
+    "ids": [
+     "hero-lines"
+    ],
+    "wheres": [
+     "section.hero h1"
+    ]
+   }
+  ],
+  "warns": [
+   {
+    "check": "scroll-reveal",
+    "where": "section#eetcafe > div.wrap > div.grid.grid--top > figure.pl-photo.pl-photo--end",
+    "msg": "starts an animation (1.6 s) the moment it is scrolled into view (an IntersectionObserver) on img (inside a dealt moment's section, [data-moment]: an enter moment is expected on every kind; its still is judged under reduced motion)",
+    "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "main#top > section.hero.hero--place / section#visit",
+    "msg": "291px between these sections, +45% against the median 201px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#groepen / footer#contact",
+    "msg": "297px between these sections, +38% against the median 216px of gaps at a change of ground",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     1440,
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "main#top > section.hero.hero--place > img.hero__bg \"hero.jpg\"",
+    "msg": "6 photographs in more than one look: saturation from 0.18 to 0.49; the odd one out is hero.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-labels",
+    "where": "header.nav.nav--split > div.wrap.nav__bar > a.nav__logo \"d'Olde Heerd\"",
+    "msg": "\"d'Olde Heerd\" opens a section headed \"Hotel en eetcafé in Balkbrug\"",
+    "fix": "name each nav link after the heading of the section it opens",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "nav-current",
+    "where": "header.nav.nav--split",
+    "msg": "the nav stays on screen with 4 links to the page's sections, but never marks the one you are in (no link changes as the page scrolls)",
+    "fix": "mark the link of the section on screen (a colour, a weight or a line under it) as the visitor scrolls",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "action-repeat",
+    "where": "header.nav.nav--split > div.wrap.nav__bar > div.nav__actions > a.btn.btn--primary \"boek een kamer\"",
+    "msg": "\"boek een kamer\" shows 2 times on the first screen at 1440px (nav, hero): the nav's button and the hero's; nothing else on the screen may repeat it",
+    "fix": "show the action once a screen besides the nav's button: the hero's, the close's or the phone bar's, never all at once",
+    "widths": [
+     1440
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "heading-scale",
+    "where": "div.wrap > div.grid > a.order.tile:nth-of-type(1) > h3 \"Feestzaal voor 100 personen\"",
+    "msg": "the h3s (20px) are only 1.20x smaller than the h2s (24px): one level a clear step (1.3x or more) below the other",
+    "fix": "size headings by level: the h1 largest, one size per level, each level below the one above",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "section-gaps",
+    "where": "section#eetcafe / section#groepen",
+    "msg": "280px between these sections, +37% against the median 205px",
+    "fix": "use one gap between sections (all within 25% of each other)",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "hole",
+    "where": "section#visit \"Route naar het hotel\"",
+    "msg": "an empty hole 216x256px inside the section (30% of the screen's height), with content above and below it",
+    "fix": "close the empty space: move the content together, or give the space the visual it lacks",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-set",
+    "where": "div.wrap > div.grid.trio > figure.pl-photo.span-5 > img \"kamer.jpg\"",
+    "msg": "6 photographs in more than one look: saturation from 0.12 to 0.53; the odd one out is kamer.jpg",
+    "fix": "grade the photographs to one look (light, colour, warmth), or replace the odd one out",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   },
+   {
+    "check": "photo-weight",
+    "where": "main#top > section.hero.hero--place > img.hero__bg \"hero.jpg\"",
+    "msg": "a photograph is 3x or more wider than drawn on the phone, with no srcset: hero.jpg is 2048px (375 KB) for a 390px frame; on a phone it arrives late and its frame shows only its ground until then",
+    "fix": "give each photograph srcset and sizes (a 800px and a 1600px file), or a smaller file: the frame never shows empty",
+    "widths": [
+     390
+    ],
+    "from": "consistency"
+   }
+  ],
+  "crashed": [],
+  "seconds": {
+   "consistency": 86,
+   "layout": 3
+  }
+ },
+ "open": [
+  {
+   "check": "postcode",
+   "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"7707 AL Balkbrug\"",
+   "msg": "a Dutch postcode: \"7707 AL Balkbrug\"; with the street it points at one building, which the brief does not give",
+   "fix": "drop the postcode: the street and the district say where it is (copy.md, Address)",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "postcode"
+   ],
+   "wheres": [
+    "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"7707 AL Balkbrug\""
+   ]
+  },
+  {
+   "check": "scroll-reveal",
+   "where": "div.wrap > div.closing__cta.close--word > div.section-head--split > a.btn.btn--primary \"Boek een kamer\"",
+   "msg": "starts \"color\" (0.1 s) the moment it is scrolled into view (an IntersectionObserver)",
+   "fix": "show it at rest: no fade, rise or unmask when it is scrolled into view",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "scroll-reveal"
+   ],
+   "wheres": [
+    "div.wrap > div.closing__cta.close--word > div.section-head--split > a.btn.btn--primary \"Boek een kamer\""
+   ]
+  },
+  {
+   "check": "contrast",
+   "where": "div.wrap > div.grid > a.order.tile:nth-of-type(1) > span.link \"Mail over de zaal\"",
+   "msg": "body text over a effect reads at 1.0:1 at its worst tenth (needs 4.5:1)",
+   "fix": "put the text on a calm part of the picture, or on a solid panel",
+   "widths": [
+    390
+   ],
+   "from": "consistency",
+   "ids": [
+    "contrast"
+   ],
+   "wheres": [
+    "div.wrap > div.grid > a.order.tile:nth-of-type(1) > span.link \"Mail over de zaal\""
+   ]
+  }
+ ],
+ "waived": [
+  {
+   "check": "street-number",
+   "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"Zwolseweg 116\"",
+   "msg": "a street with its house number: \"Zwolseweg 116\"; a real door, which the brief does not give (and 2 more like it: div.closing__links > div.grid > div.span-6.stack-4:nth-of-type(1) > address.footer__address, div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(2) > a.link)",
+   "fix": "print the street and the district only (\"Weserstraße, Berlin-Neukölln\"): no house number, unless the brief gives the address",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "street-number"
+   ],
+   "wheres": [
+    "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > address.visit__address \"Zwolseweg 116\""
+   ],
+   "reason": "the client's own published address, taken word for word from its current site oldeheerdhotel.nl (copy.md: what the brief gives is printed as given)"
+  },
+  {
+   "check": "phone-number",
+   "where": "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) \"06 29482202\"",
+   "msg": "a phone number with its area code: \"06 29482202\"; a visitor can dial it and reach a stranger (and 1 more like it: div.grid > div.span-6.start-7 > dl.near > dd:nth-of-type(1))",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.visit.visit--card > div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) \"06 29482202\""
+   ],
+   "reason": "the client's own published phone number, taken from its current site oldeheerdhotel.nl: the brief gives the number"
+  },
+  {
+   "check": "phone-number",
+   "where": "div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) > a.link \"tel:+31629482202\"",
+   "msg": "a tel: link calls a number in a real dialable format: \"tel:+31629482202\"; a visitor can dial it and reach a stranger (and 2 more like it: section#groepen > div.wrap > div.grid > a.order.tile:nth-of-type(3), div.span-6.start-7 > dl.near > dd:nth-of-type(1) > a)",
+   "fix": "drop the number and its tel: link (a \"Request a call\" form may stand in), unless the brief gives the number",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "phone-number"
+   ],
+   "wheres": [
+    "div.visit__cols > div.visit__col.stack-4 > p:nth-of-type(1) > a.link \"tel:+31629482202\""
+   ],
+   "reason": "the tel: link dials the client's own published number from its current site oldeheerdhotel.nl: the brief gives the number"
+  },
+  {
+   "check": "row-lines",
+   "where": "section#kamers > div.wrap > div.grid.trio",
+   "msg": "a row of 3 items: its items are 542/384/212px tall, not one height (2px either way) (SR-7)",
+   "fix": "start the row's first item on the container's left line and end its last on the right line, every item one height",
+   "widths": [
+    1440
+   ],
+   "from": "consistency",
+   "ids": [
+    "row-lines"
+   ],
+   "wheres": [
+    "section#kamers > div.wrap > div.grid.trio"
+   ],
+   "reason": "the dealt trio composition (sections.md section 4): three photographs in three sizes on span-5, span-4 and span-3, tops on one line"
+  },
+  {
+   "check": "hero-lines",
+   "where": "section.hero h1",
+   "msg": "the check fills the h1 to 48 characters (this hero's maxChars in heroes.json), not the page's own: it takes 3 lines at 1440, 2 at most",
+   "fix": "the check fills the h1 to this hero's maxChars, not your own: take the next type pairing the deal printed (start.mjs); when the h1 is final and fits, waive it (target: section.hero h1)",
+   "widths": [
+    1440,
+    390
+   ],
+   "from": "layout",
+   "ids": [
+    "hero-lines"
+   ],
+   "wheres": [
+    "section.hero h1"
+   ],
+   "reason": "the h1 is final at 28 characters: one line at 1440 and two at 390; only the 48-character stress fill runs over"
+  }
+ ],
+ "warnCount": 12,
+ "at": "2026-11-14T20:01:12.069Z",
+ "openTold": true
+}
