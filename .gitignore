@@ -1,0 +1,12 @@
+# Runtime-bestanden van de nacht-worker
+wachtrij_status.json
+wachtrij.lock
+wachtrij.stop
+logs/
+mail_verzonden.csv
+# Leadbestanden (privé, nooit in git)
+*leads*.csv
+*.bak
+__pycache__/
+*.pyc
+.taste-skill/

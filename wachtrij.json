@@ -1,0 +1,37 @@
+{
+  "instellingen": {
+    "stop_bij_fout": false,
+    "pauze_tussen_taken_sec": 3,
+    "zeg_klaar_aan_einde": true
+  },
+  "taken": [
+    {
+      "id": "opschonen",
+      "naam": "Lokale leads opschonen (ketens & rommel eruit)",
+      "type": "leads_opschonen",
+      "status": "wachtend",
+      "params": { "csv": "echte_leads.csv", "dedup": true }
+    },
+    {
+      "id": "demos",
+      "naam": "Demo-taken voorbereiden (top 10 leads)",
+      "type": "demo_voorbereiden",
+      "status": "wachtend",
+      "params": { "csv": "echte_leads.csv", "max": 10, "map": "demos" }
+    },
+    {
+      "id": "mailronde",
+      "naam": "Veilige mailronde (droog, max 20, 1,5–4 min pauze)",
+      "type": "mailronde",
+      "status": "wachtend",
+      "params": {
+        "csv": "echte_leads.csv",
+        "max_mails": 20,
+        "pauze_min_sec": 90,
+        "pauze_max_sec": 240,
+        "venster": [8, 20],
+        "droog": true
+      }
+    }
+  ]
+}
