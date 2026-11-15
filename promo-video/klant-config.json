@@ -1,0 +1,77 @@
+{
+  "_uitleg": "Pas alleen de waarden hieronder aan voor een nieuwe klant. Daarna: 'npm run build' (voice-over + render). Teksten tussen *sterretjes* worden blauw (accentkleur) in de ondertitels.",
+
+  "merk": {
+    "naam": "Webdesign Attila",
+    "logoTekst": "WA",
+    "website": "webdesignattila.nl",
+    "belofte": "Eerst zien, dan pas beslissen",
+    "bereikbaarheid": "Ma t/m Za · 09:00 – 21:00"
+  },
+
+  "kleuren": {
+    "achtergrond": "#060B1A",
+    "achtergrondGlow": "#0E2A6B",
+    "kaart": "#0D1530",
+    "kaartRand": "#1E2B52",
+    "accent": "#3B82F6",
+    "tekst": "#F5F7FF",
+    "tekstZacht": "#93A0C4",
+    "goed": "#22C55E",
+    "fout": "#EF4444",
+    "prijs": "#FACC15"
+  },
+
+  "scenes": {
+    "hook": {
+      "kaartTitel": "Google PageSpeed",
+      "domein": "jouwbedrijf.nl",
+      "scoreStart": 92,
+      "scoreEind": 28,
+      "statusLabel": "Verouderde website",
+      "ondertitel": "Kost jouw *oude website* je elke week *nieuwe klanten?*"
+    },
+    "check": {
+      "badge": "#1 CHECK JE WEBSITE",
+      "kaartTitel": "Website-scan",
+      "waarschuwingen": ["Traag op mobiel", "Geen WhatsApp-knop", "Onvindbaar in Google"],
+      "ondertitel": "Veel ondernemers *missen aanvragen* zonder het door te hebben."
+    },
+    "oplossing": {
+      "badge": "#2 JOUW NIEUWE WEBSITE",
+      "kaartTitel": "Kies je pakket",
+      "opties": ["Visitekaartje-site", "Complete Website + Lokale SEO", "Webshop op maat"],
+      "gekozenIndex": 1,
+      "prijsRegel1": "Vanaf € 999,-",
+      "prijsRegel2": "Binnen 5 dagen live",
+      "ondertitel": "Een strakke nieuwe website staat al *binnen 5 dagen live.*"
+    },
+    "contact": {
+      "badge": "#3 GRATIS VOORBEELD",
+      "kaartTitel": "Gratis ontwerp",
+      "knopTekst": "Vraag gratis ontwerp aan via WhatsApp",
+      "bevestiging": "Binnen 24 uur klaar",
+      "ondertitel": "Stuur een appje en bekijk eerst *gratis* jouw ontwerp."
+    },
+    "eind": {
+      "labelWebsite": "Website",
+      "labelBelofte": "Belofte",
+      "labelBereikbaar": "Bereikbaar",
+      "ondertitel": "Vraag vandaag nog je *gratis ontwerp* aan."
+    }
+  },
+
+  "voiceover": {
+    "taal": "nl",
+    "tld": "com",
+    "bestand": "voiceover.mp3",
+    "volume": 1,
+    "teksten": {
+      "hook": "Kost jouw oude website je elke week nieuwe klanten?",
+      "check": "Veel ondernemers missen aanvragen, zonder het door te hebben.",
+      "oplossing": "Een strakke nieuwe website staat al binnen vijf dagen live. Vanaf negenhonderdnegenennegentig euro.",
+      "contact": "Stuur een appje, en bekijk eerst gratis jouw ontwerp.",
+      "eind": "Webdesign Attila. Eerst zien, dan pas beslissen."
+    }
+  }
+}

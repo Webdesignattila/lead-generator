@@ -1,0 +1,23 @@
+{
+  "name": "webdesign-attila-promo-video",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Remotion promo-video (1080x1920, 30 fps, 23 s) voor Webdesign Attila - herbruikbaar via klant-config.json",
+  "scripts": {
+    "studio": "remotion studio",
+    "voiceover": "python scripts/genereer_voiceover.py",
+    "render": "remotion render PromoVideo out/webdesign_attila_promo.mp4",
+    "build": "npm run voiceover && npm run render"
+  },
+  "dependencies": {
+    "@fontsource/inter": "5.1.0",
+    "@remotion/cli": "4.0.543",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.543"
+  },
+  "devDependencies": {
+    "@types/react": "18.3.12",
+    "typescript": "5.6.3"
+  }
+}
