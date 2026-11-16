@@ -1,0 +1,21 @@
+{
+ "moments": [
+  {
+   "id": "pinned-chapters",
+   "at": "2026-11-16T14:32:39.264Z",
+   "seed": "7d60e18b"
+  },
+  {
+   "id": "word-highlight",
+   "at": "2026-11-16T14:41:52.708Z",
+   "seed": "28302216"
+  }
+ ],
+ "palettes": [],
+ "types": [],
+ "dealt": [
+  "work-sans",
+  "newsreader",
+  "schibsted"
+ ]
+}
