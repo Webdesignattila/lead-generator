@@ -47,6 +47,8 @@
 <style>
   .nav__logo .logo-img { height: 32px; width: auto; }
   .plan-save { color: var(--muted); }
+  .closing__cta.close--type > .btn { align-self: flex-start; }
+  @media (max-width: 639px) { .closing__cta.close--type > .btn { align-self: stretch; } }
   .card--plan .link { margin-top: auto; }
   .card--plan { transition: transform 160ms var(--ease); } .card--plan:hover { transform: translateY(-2px); }
   .passed__extra { display: none; }
