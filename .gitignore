@@ -1,2 +1,5 @@
 sites/*/.taste-skill/
 sites/*.zip
+sites/*/shots/
+# tijdelijk: de volledige kit wordt na de controle teruggebracht tot de gebruikte bestanden
+sites/rijschoolpluspunt/assets/
