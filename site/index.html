@@ -1,0 +1,298 @@
+<title>Timmerbedrijf Van Amsterdam</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Aanbouw, dakkapel en grote verbouw in Noord-Holland. Vaste prijs, één aanspreekpunt, gratis offerte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<script src="https://cdn.tailwindcss.com/3.4.17"></script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<style>
+/* Concept: architectonisch en nuchter. Brede, links uitgelijnde typografie, rustige steenkleur, eikenbrons alleen op acties. */
+:root{
+  --bg:#F8F7F4; --surface:#FFFFFF; --ink:#18181B; --muted:#5B5A57; --line:#E4E1DA; --accent:#A86F3E; --accent-ink:#FFFFFF; --dark:#18181B; --dark-ink:#F8F7F4; --danger:#B3261E;
+  --font-head:'Plus Jakarta Sans',system-ui,sans-serif; --font-body:'Inter',system-ui,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#131315;--surface:#1B1B1E;--ink:#F3F1EC;--muted:#A9A69F;--line:#2C2C30;--accent:#C98B55;--accent-ink:#131315;--dark:#0C0C0E;--dark-ink:#F3F1EC;--danger:#FF8A80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#131315;--surface:#1B1B1E;--ink:#F3F1EC;--muted:#A9A69F;--line:#2C2C30;--accent:#C98B55;--accent-ink:#131315;--dark:#0C0C0E;--dark-ink:#F3F1EC;--danger:#FF8A80;color-scheme:dark}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.head{font-family:var(--font-head);letter-spacing:-.02em;text-wrap:balance;line-height:1.08}
+.wrap{max-width:1200px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--font-head);font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;min-height:48px;padding:0 1.4rem;font-family:var(--font-head);font-weight:600;font-size:.97rem;border-radius:2px;transition:transform .15s,background .2s,color .2s,border-color .2s;cursor:pointer;border:1px solid transparent;text-decoration:none}
+.btn:active{transform:translateY(1px)}
+.btn-primary{box-shadow:0 1px 0 rgba(0,0,0,.08)}
+h2{max-width:22ch}
+#werkwijze h2,#offerte h2,#reviews h2{max-width:26ch}
+section[id]{scroll-margin-top:72px}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--ink);color:var(--ink);background:transparent}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,#2a2a2e,#18181B);isolation:isolate}
+.ph::before{content:attr(data-label);position:absolute;inset:auto 1rem 1rem 1rem;color:#b9b5ac;font-family:var(--font-head);font-weight:600;font-size:.85rem;z-index:0}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;z-index:1}
+.ph:hover img{transform:scale(1.03)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:color-mix(in srgb,var(--bg) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:50;background:var(--bg)}
+.navlink{font-size:.95rem;font-weight:500;position:relative;padding:.4rem 0}
+.navlink::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.navlink:hover::after{transform:scaleX(1)}
+.tile{background:var(--surface);border:1px solid var(--line);transition:transform .2s,border-color .2s}
+.tile:hover{transform:translateY(-2px);border-color:var(--accent)}
+.rule{border-top:1px solid var(--line)}
+.dark-band{background:var(--dark);color:var(--dark-ink)}
+.dark-band .muted{color:#b4b0a7}
+input,select,textarea{width:100%;min-height:50px;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:2px;padding:.7rem .9rem;font:inherit;font-size:16px}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+label{font-weight:500;font-size:.9rem;display:block;margin-bottom:.35rem}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;align-items:center;padding:1.25rem 0;font-family:var(--font-head);font-weight:600;font-size:1.08rem}
+summary::-webkit-details-marker{display:none}
+details[open] summary .plus{transform:rotate(45deg)}
+.plus{transition:transform .2s;flex:none}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+[data-enter]{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+[data-enter="2"]{animation-delay:.1s}[data-enter="3"]{animation-delay:.2s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+.mobilebar{position:fixed;left:0;right:0;bottom:0;z-index:45;display:none;background:var(--bg);border-top:1px solid var(--line);padding:.6rem max(12px,env(safe-area-inset-right,0px)) calc(.6rem + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));gap:.6rem}
+@media (max-width:767px){.mobilebar{display:flex}.mobilebar .btn{flex:1;padding:0 .6rem}footer{padding-bottom:5.5rem}}
+</style>
+
+<header class="nav">
+  <div class="wrap flex items-center justify-between gap-4 h-[68px]">
+    <a href="#top" class="head font-extrabold text-[1.05rem] leading-none tracking-tight">Timmerbedrijf<br><span style="color:var(--accent)">Van Amsterdam</span></a>
+    <nav class="hidden lg:flex gap-8" aria-label="Hoofdmenu">
+      <a class="navlink" href="#diensten">Diensten</a>
+      <a class="navlink" href="#werkwijze">Werkwijze</a>
+      <a class="navlink" href="#projecten">Projecten</a>
+      <a class="navlink" href="#over-ons">Over ons</a>
+      <a class="navlink" href="#reviews">Klantervaringen</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="tel:+31628470960" class="hidden md:inline-flex items-center gap-2 font-semibold text-[.95rem]"><i data-lucide="phone" class="w-4 h-4" style="color:var(--accent)"></i>06 28 47 09 60</a>
+      <a href="#offerte" class="btn btn-primary hidden sm:inline-flex">Offerte aanvragen</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<section class="wrap pt-10 md:pt-16 pb-12 md:pb-20">
+  <div class="grid lg:grid-cols-12 gap-10 lg:gap-14 items-end">
+    <div class="lg:col-span-6">
+      <p class="eyebrow" data-enter>Aannemer Noord-Holland · Opgericht 2021</p>
+      <h1 class="mt-5 text-[2.6rem] sm:text-6xl lg:text-[4.1rem] font-extrabold" data-enter="2">Aanbouw, dakkapel of grote verbouw. <span style="color:var(--accent)">Alles uit één hand.</span></h1>
+      <p class="mt-6 text-lg muted max-w-[34rem]" data-enter="3">Van eerste gesprek tot sleuteloverdracht regelen wij het volledig. Vakkundige uitvoering, helder contact en een nette oplevering, voor particulieren in heel Noord-Holland. U tekent pas af als alles naar uw tevredenheid is.</p>
+      <div class="mt-8 flex flex-wrap gap-3" data-enter="3">
+        <a href="#offerte" class="btn btn-primary">Vraag gratis offerte aan <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+        <a href="tel:+31628470960" class="btn btn-ghost"><i data-lucide="phone" class="w-4 h-4"></i>Bel direct 06 28 47 09 60</a>
+      </div>
+    </div>
+    <div class="lg:col-span-6">
+      <div class="ph aspect-[4/3] lg:aspect-[5/5]" data-label="Uitbouw Haarlem">
+        <img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/haarlem-1.jpg" alt="Uitbouw met lichtstraat in Haarlem, uitgevoerd door Timmerbedrijf Van Amsterdam" loading="eager" onerror="this.remove()">
+      </div>
+    </div>
+  </div>
+  <dl class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px rule" style="background:var(--line);border:1px solid var(--line)">
+    <div class="p-5" style="background:var(--bg)"><dt class="text-sm muted">Afgeronde projecten</dt><dd class="head text-3xl font-extrabold mt-1">50+</dd></div>
+    <div class="p-5" style="background:var(--bg)"><dt class="text-sm muted">Prijsafspraak</dt><dd class="head text-xl font-bold mt-2">Vaste prijs</dd></div>
+    <div class="p-5" style="background:var(--bg)"><dt class="text-sm muted">Reactie op uw aanvraag</dt><dd class="head text-xl font-bold mt-2">Binnen 1 werkdag</dd></div>
+    <div class="p-5" style="background:var(--bg)"><dt class="text-sm muted">Offerte</dt><dd class="head text-xl font-bold mt-2">Binnen 5 werkdagen</dd></div>
+  </dl>
+</section>
+
+<!-- DIENSTEN -->
+<section id="diensten" class="rule">
+  <div class="wrap py-16 md:py-24">
+    <div class="grid md:grid-cols-12 gap-6 items-end mb-10">
+      <div class="md:col-span-7"><p class="eyebrow">Wat wij doen</p><h2 class="mt-3 text-4xl md:text-5xl font-extrabold">Drie specialismen, één vast team.</h2></div>
+      <p class="md:col-span-5 muted">Groot of klein, wij pakken het volledig op. Eén aanspreekpunt, één vakteam, één factuur.</p>
+    </div>
+    <div class="grid md:grid-cols-6 gap-4">
+      <article class="tile md:col-span-4 md:row-span-2 flex flex-col">
+        <div class="ph aspect-[16/9]" data-label="Aanbouw Purmerend"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/purmerend-1.jpg" alt="Aanbouw in Purmerend" loading="lazy" onerror="this.remove()"></div>
+        <div class="p-7 md:p-9">
+          <i data-lucide="house-plus" class="w-7 h-7" style="color:var(--accent)"></i>
+          <h3 class="mt-4 text-3xl font-bold">Aanbouw &amp; uitbouw</h3>
+          <p class="mt-3 muted max-w-xl">Uitbreiding van uw woning aan de zij- of achterkant. Wij verzorgen de complete bouw: fundering, muren, dak, kozijnen en afwerking. Volledig sleutelklaar opgeleverd.</p>
+          <p class="mt-4 text-sm muted">Standaard aanbouw van 12 tot 25 m²: gemiddeld 6 tot 10 weken bouwtijd.</p>
+        </div>
+      </article>
+      <article class="tile md:col-span-2 p-7">
+        <i data-lucide="sun" class="w-7 h-7" style="color:var(--accent)"></i>
+        <h3 class="mt-4 text-2xl font-bold">Dakkapellen</h3>
+        <p class="mt-3 muted text-[.98rem]">Meer ruimte en lichtinval op zolder. Van vergunning tot plaatsing en afwerking, met een waterdicht eindresultaat.</p>
+      </article>
+      <article class="tile md:col-span-2 p-7">
+        <i data-lucide="ruler" class="w-7 h-7" style="color:var(--accent)"></i>
+        <h3 class="mt-4 text-2xl font-bold">Grote verbouw &amp; constructie</h3>
+        <p class="mt-3 muted text-[.98rem]">Draagmuren verwijderen, stalen balken plaatsen, open plattegronden realiseren. Ook complete renovatie van begane grond of badkamer, met vloerverwarming, PVC en maatwerk.</p>
+      </article>
+      <article class="tile md:col-span-6 p-7 md:p-9 grid md:grid-cols-12 gap-4 items-center" style="background:var(--dark);color:var(--dark-ink);border-color:var(--dark)">
+        <div class="md:col-span-5"><p class="eyebrow">Regelwerk inbegrepen</p><h3 class="mt-2 text-2xl font-bold">Vergunning, tekeningen en fundering</h3></div>
+        <p class="md:col-span-7 text-[.98rem]" style="color:#c4c0b7">Wij verzorgen het complete vergunningentraject bij uw gemeente, inclusief bouwtekeningen en constructieberekeningen. De bodem in Noord-Holland is veen en slappe klei: daarom laten wij eerst een sonderingsonderzoek uitvoeren en funderen we op schroefpalen of betonnen heipalen.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- WERKWIJZE -->
+<section id="werkwijze" class="dark-band">
+  <div class="wrap py-16 md:py-24">
+    <p class="eyebrow">Van plan tot oplevering</p>
+    <h2 class="mt-3 text-4xl md:text-5xl font-extrabold max-w-3xl">Geen verrassingen, geen gedoe. Van het eerste idee tot de laatste schroef.</h2>
+    <ol class="mt-12 grid md:grid-cols-4 gap-px" style="background:#2e2e32">
+      <li class="p-7" style="background:var(--dark)"><span class="head text-sm font-bold" style="color:var(--accent)">Stap 1</span><h3 class="mt-3 text-xl font-bold">Gratis gesprek</h3><p class="mt-3 text-[.97rem] muted">We komen bij u langs voor een vrijblijvend kennismakingsgesprek, bespreken uw wensen en denken mee over de beste aanpak.</p></li>
+      <li class="p-7" style="background:var(--dark)"><span class="head text-sm font-bold" style="color:var(--accent)">Stap 2</span><h3 class="mt-3 text-xl font-bold">Offerte op maat</h3><p class="mt-3 text-[.97rem] muted">Binnen vijf werkdagen een heldere offerte. Geen verborgen kosten, een volledig beeld van het werk en wat het kost.</p></li>
+      <li class="p-7" style="background:var(--dark)"><span class="head text-sm font-bold" style="color:var(--accent)">Stap 3</span><h3 class="mt-3 text-xl font-bold">Vakkundige uitvoering</h3><p class="mt-3 text-[.97rem] muted">Eén vast team voert het werk van begin tot eind uit. U heeft altijd één aanspreekpunt en weet precies wat er gebeurt.</p></li>
+      <li class="p-7" style="background:var(--dark)"><span class="head text-sm font-bold" style="color:var(--accent)">Stap 4</span><h3 class="mt-3 text-xl font-bold">Nette oplevering</h3><p class="mt-3 text-[.97rem] muted">Schoongemaakt en zonder rommel. U inspecteert het werk samen met ons en tekent pas af als alles naar uw tevredenheid is.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- PROJECTEN -->
+<section id="projecten">
+  <div class="wrap py-16 md:py-24">
+    <div class="flex flex-wrap items-end justify-between gap-4 mb-10">
+      <div><p class="eyebrow">Vakwerk</p><h2 class="mt-3 text-4xl md:text-5xl font-extrabold">Werk uit de praktijk</h2></div>
+      <a class="btn btn-ghost" href="https://www.instagram.com/timmerbedrijf_van_amsterdam/" target="_blank" rel="noopener"><i data-lucide="instagram" class="w-4 h-4"></i>Meer op Instagram</a>
+    </div>
+    <!-- Uitbreiden: voeg een <div class="ph ..."> toe met een eigen foto uit Instagram of uit /assets/images -->
+    <div class="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
+      <div class="ph col-span-2 md:col-span-4 aspect-[16/10]" data-label="Haarlem · uitbouw met lichtstraat"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/haarlem-2.jpg" alt="Project in Haarlem" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-1 md:col-span-2 aspect-[4/5] md:aspect-auto" data-label="Haarlem"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/haarlem-3.jpg" alt="Project in Haarlem, detail" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-1 md:col-span-2 aspect-[4/5]" data-label="Assendelft"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/assendelft-1.jpg" alt="Project in Assendelft" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-1 md:col-span-2 aspect-[4/5]" data-label="Assendelft"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/assendelft-2.jpg" alt="Project in Assendelft, tweede foto" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-1 md:col-span-2 aspect-[4/5]" data-label="Purmerend"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/purmerend-2.jpg" alt="Project in Purmerend" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-2 md:col-span-3 aspect-[16/10]" data-label="Purmerend"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/purmerend-3.jpg" alt="Project in Purmerend, derde foto" loading="lazy" onerror="this.remove()"></div>
+      <div class="ph col-span-2 md:col-span-3 aspect-[16/10]" data-label="Assendelft"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/assendelft-3.jpg" alt="Project in Assendelft, derde foto" loading="lazy" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVER ONS -->
+<section id="over-ons" class="rule">
+  <div class="wrap py-16 md:py-24 grid md:grid-cols-12 gap-10 md:gap-14 items-center">
+    <div class="md:col-span-5 order-2 md:order-1">
+      <div class="ph aspect-[4/5]" data-label="Het team"><img src="https://www.timmerbedrijfvanamsterdam.nl/assets/images/team.jpg" alt="Het team van Timmerbedrijf Van Amsterdam" loading="lazy" onerror="this.remove()"></div>
+    </div>
+    <div class="md:col-span-7 order-1 md:order-2">
+      <p class="eyebrow">Persoonlijk vakmanschap</p>
+      <h2 class="mt-3 text-4xl md:text-5xl font-extrabold">Goed vakmanschap begint met goed luisteren.</h2>
+      <p class="mt-6 text-lg">Of het nu gaat om een aanbouw, een complete renovatie of een dakkapel: uw project is uniek en verdient een aanpak op maat.</p>
+      <p class="mt-4 muted">Timmerbedrijf Van Amsterdam is opgericht vanuit een passie voor bouwen. Wij zijn kleinschalig, persoonlijk en altijd bereikbaar, maar met de kennis en het netwerk om ook grotere projecten foutloos uit te voeren.</p>
+      <p class="mt-4 muted">Wij werken uitsluitend voor particulieren in Noord-Holland en zijn gespecialiseerd in projecten waarbij vakmanschap én constructieve kennis samenkomen: aanbouw, dakkapellen en ingrijpende verbouw.</p>
+      <ul class="mt-8 flex flex-wrap gap-2 text-sm font-medium">
+        <li class="px-3 py-1.5 border" style="border-color:var(--line)">Alles uit één hand</li><li class="px-3 py-1.5 border" style="border-color:var(--line)">Gratis offerte</li><li class="px-3 py-1.5 border" style="border-color:var(--line)">Constructiewerk</li><li class="px-3 py-1.5 border" style="border-color:var(--line)">Nette oplevering</li><li class="px-3 py-1.5 border" style="border-color:var(--line)">100% particulier</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" class="rule" style="background:var(--surface)">
+  <div class="wrap py-16 md:py-24">
+    <p class="eyebrow">Klantervaringen</p>
+    <h2 class="mt-3 text-4xl md:text-5xl font-extrabold max-w-2xl">Wat onze klanten zeggen</h2>
+    <div class="mt-10 grid md:grid-cols-3 gap-6">
+      <figure class="p-7 border flex flex-col" style="border-color:var(--line);background:var(--bg)">
+        <div class="flex gap-0.5" style="color:var(--accent)" aria-label="5 van 5 sterren"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="mt-4 text-[1.02rem] flex-1">“Timmerbedrijf Van Amsterdam heeft onze aanbouw van begin tot eind perfect begeleid. Nette oplevering, vaste prijs en altijd bereikbaar. Absolute aanrader voor iedereen in Amsterdam.”</blockquote>
+        <figcaption class="mt-6 pt-4 rule text-sm"><strong>R. van den Berg</strong><span class="muted"> · Amsterdam</span></figcaption>
+      </figure>
+      <figure class="p-7 border flex flex-col" style="border-color:var(--line);background:var(--bg)">
+        <div class="flex gap-0.5" style="color:var(--accent)" aria-label="5 van 5 sterren"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="mt-4 text-[1.02rem] flex-1">“Draagmuur verwijderd en open keuken gecreëerd in 7 weken. Het team werkte snel, schoon en uiterst vakkundig. Van planning tot oplevering klopte alles exact.”</blockquote>
+        <figcaption class="mt-6 pt-4 rule text-sm"><strong>M. Kooijman</strong><span class="muted"> · Zaandam</span></figcaption>
+      </figure>
+      <figure class="p-7 border flex flex-col" style="border-color:var(--line);background:var(--bg)">
+        <div class="flex gap-0.5" style="color:var(--accent)" aria-label="5 van 5 sterren"><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i><i data-lucide="star" class="w-4 h-4 fill-current"></i></div>
+        <blockquote class="mt-4 text-[1.02rem] flex-1">“We hadden eerder een slechte ervaring elders. Bij Van Amsterdam was alles anders: heldere communicatie, eerlijke prijs en een resultaat om trots op te zijn.”</blockquote>
+        <figcaption class="mt-6 pt-4 rule text-sm"><strong>P. Lakeman</strong><span class="muted"> · Purmerend</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap py-16 md:py-24 grid md:grid-cols-12 gap-10">
+    <div class="md:col-span-4"><p class="eyebrow">Veelgestelde vragen</p><h2 class="mt-3 text-4xl font-extrabold">Alles wat u wilt weten</h2><p class="mt-4 muted">Zo kunt u goed voorbereid een offerte aanvragen.</p></div>
+    <div class="md:col-span-8">
+      <details><summary>Hoe lang duurt een aanbouw? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">Een standaard aanbouw van 12 tot 25 m² duurt gemiddeld 6 tot 10 weken bouwtijd. Inclusief de vergunningsprocedure rekent u op 10 tot 18 weken van plan tot oplevering. Bij de offerte ontvangt u altijd een concrete planning.</p></details>
+      <details><summary>Regelen jullie de vergunning? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">Ja. Wij verzorgen het complete vergunningentraject bij uw gemeente, inclusief de bouwtekeningen en constructieberekeningen. U hoeft er zelf niets voor te doen.</p></details>
+      <details><summary>Werken jullie met meerwerk of een vaste prijs? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">Wij werken uitsluitend met een vaste prijs. Alles wat wij leveren staat gespecificeerd in de offerte: geen verborgen kosten en geen onverwachte meerprijs achteraf.</p></details>
+      <details><summary>Waarom heipalen of schroefpalen? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">De ondergrond in Noord-Holland bestaat grotendeels uit veen en slappe klei, waarin een fundering op staal wegzakt. Schroefpalen of betonnen heipalen dragen de belasting over op de zandlaag dieper in de bodem. Wij laten altijd eerst een sonderingsonderzoek uitvoeren.</p></details>
+      <details><summary>In welke plaatsen werken jullie? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">In heel Noord-Holland, met een focus op Amsterdam, Zaandam, Purmerend, Assendelft, Wormerland, Zaandijk, Alkmaar en omgeving. Twijfelt u? Neem contact op, dan bekijken wij het graag.</p></details>
+      <details><summary>Wanneer kunnen jullie starten? <i data-lucide="plus" class="plus w-5 h-5"></i></summary><p class="pb-6 muted">Na akkoord op de offerte plannen wij de startdatum in overleg. Gemiddeld starten wij 2 tot 4 weken na vergunningverlening. Bij kleinere projecten zonder vergunningsplicht soms al binnen 2 weken.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- OFFERTE -->
+<section id="offerte" class="dark-band">
+  <div class="wrap py-16 md:py-24 grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-5">
+      <p class="eyebrow">Gratis offerte</p>
+      <h2 class="mt-3 text-4xl md:text-5xl font-extrabold">Vertel in 30 seconden wat u wilt laten bouwen.</h2>
+      <p class="mt-5 muted">Wij reageren binnen één werkdag. Volledig vrijblijvend: wij komen bij u langs, bekijken de situatie en geven een eerlijk advies.</p>
+      <dl class="mt-8 space-y-4 text-[1rem]">
+        <div class="flex gap-3"><i data-lucide="phone" class="w-5 h-5 mt-1" style="color:var(--accent)"></i><div><dt class="text-sm muted">Telefoon</dt><dd class="font-semibold select-all">06 28 47 09 60</dd></div></div>
+        <div class="flex gap-3"><i data-lucide="mail" class="w-5 h-5 mt-1" style="color:var(--accent)"></i><div><dt class="text-sm muted">E-mail</dt><dd class="font-semibold select-all break-all">timmerbedrijfvanamsterdam@outlook.com</dd></div></div>
+        <div class="flex gap-3"><i data-lucide="map-pin" class="w-5 h-5 mt-1" style="color:var(--accent)"></i><div><dt class="text-sm muted">Werkgebied</dt><dd class="font-semibold">Heel Noord-Holland</dd></div></div>
+      </dl>
+    </div>
+    <div class="lg:col-span-7">
+      <form id="offerteform" class="p-6 md:p-9 grid sm:grid-cols-2 gap-5" style="background:var(--surface);color:var(--ink)" novalidate>
+        <div><label for="naam">Uw naam</label><input id="naam" name="naam" autocomplete="name" required></div>
+        <div><label for="tel">Telefoonnummer</label><input id="tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" required></div>
+        <div><label for="plaats">Woonplaats</label><input id="plaats" name="plaats" autocomplete="address-level2" required></div>
+        <div><label for="werk">Waar gaat het om?</label>
+          <select id="werk" name="werk"><option>Aanbouw of uitbouw</option><option>Dakkapel</option><option>Grote verbouw of constructie</option><option>Anders, ik leg het uit</option></select></div>
+        <div class="sm:col-span-2"><label for="bericht">Korte toelichting <span class="muted font-normal">(mag leeg blijven)</span></label><textarea id="bericht" name="bericht" rows="3" style="min-height:96px"></textarea></div>
+        <p id="formerr" class="sm:col-span-2 text-sm" style="color:var(--danger)" role="alert" hidden>Vul uw naam, telefoonnummer en woonplaats in, dan kunnen wij u bellen.</p>
+        <div class="sm:col-span-2">
+          <button class="btn btn-primary w-full" type="submit">Vraag gratis offerte aan <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+          <p class="mt-3 text-sm muted">Uw aanvraag opent als bericht in WhatsApp, klaar om te versturen naar 06 28 47 09 60.</p>
+        </div>
+        <div id="formok" class="sm:col-span-2 p-5 border" style="border-color:var(--accent)" hidden>
+          <p class="font-semibold">Uw aanvraag staat klaar.</p>
+          <p class="mt-1 text-sm muted">Er is nog niets verstuurd. Tik op de knop en verstuur het bericht in WhatsApp, of bel 06 28 47 09 60.</p>
+          <a id="walink" class="btn btn-primary mt-4" href="#" target="_blank" rel="noopener"><i data-lucide="message-circle" class="w-4 h-4"></i>Open WhatsApp</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="rule">
+  <div class="wrap py-10 flex flex-wrap items-start justify-between gap-6 text-sm">
+    <div><p class="head font-extrabold text-base">Timmerbedrijf Van Amsterdam</p><p class="mt-1 muted">Aannemer voor aanbouw, dakkapel en verbouw in Noord-Holland.</p><p class="mt-1 muted">KvK 81385692 · Opgericht 2021</p></div>
+    <div class="muted"><p>06 28 47 09 60</p><p>timmerbedrijfvanamsterdam@outlook.com</p><a class="underline" href="https://www.instagram.com/timmerbedrijf_van_amsterdam/" target="_blank" rel="noopener">@timmerbedrijf_van_amsterdam</a></div>
+  </div>
+</footer>
+
+<div class="mobilebar" role="region" aria-label="Snel contact">
+  <a class="btn btn-ghost" href="tel:+31628470960"><i data-lucide="phone" class="w-4 h-4"></i>Bel direct</a>
+  <a class="btn btn-primary" href="#offerte">Offerte aanvragen</a>
+</div>
+
+<script>
+try{lucide.createIcons()}catch(e){}
+document.getElementById('offerteform').addEventListener('submit',function(e){
+  e.preventDefault();
+  var f=e.target,v=function(n){return f.elements[n].value.trim()};
+  var err=document.getElementById('formerr'),ok=document.getElementById('formok');
+  if(!v('naam')||!v('tel')||!v('plaats')){err.hidden=false;ok.hidden=true;return}
+  err.hidden=true;
+  var t='Offerte-aanvraag via de website%0A'+encodeURIComponent('Naam: '+v('naam')+'\nTelefoon: '+v('tel')+'\nPlaats: '+v('plaats')+'\nWerk: '+v('werk')+(v('bericht')?'\nToelichting: '+v('bericht'):''));
+  document.getElementById('walink').href='https://wa.me/31628470960?text='+t;
+  ok.hidden=false;try{lucide.createIcons()}catch(x){}
+});
+</script>
