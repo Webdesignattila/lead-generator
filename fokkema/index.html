@@ -1,0 +1,466 @@
+<title>Timmerbedrijf P. Fokkema</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap">
+<style>
+/* Concept: bouwtekening. Dunne lijnen, maatvoering, asymmetrische vlakken op steenkleurig papier. */
+:root{
+  --stone:#F8F7F4; --stone-2:#EFEDE7; --ink:#18181B; --ink-2:#4A4A52;
+  --oak:#A86F3E; --oak-text:#85501F; --cta:#94602F; --cta-hover:#7D4F24; --on-cta:#FFFFFF;
+  --line:rgba(24,24,27,.14); --line-strong:rgba(24,24,27,.32);
+  --panel:#18181B; --on-panel:#F8F7F4; --on-panel-2:rgba(248,247,244,.72);
+  --ok:#2F6B45;
+  --f-head:'Plus Jakarta Sans',system-ui,sans-serif; --f-body:'Inter',system-ui,sans-serif;
+  --gutter:max(16px,env(safe-area-inset-left,0px));
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --stone:#121214; --stone-2:#1B1B1F; --ink:#F3F1EC; --ink-2:#B9B6AF;
+  --oak:#C48A55; --oak-text:#D7A06B; --cta:#B0753F; --cta-hover:#C28450; --on-cta:#121214;
+  --line:rgba(243,241,236,.14); --line-strong:rgba(243,241,236,.34);
+  --panel:#1F1F24; --on-panel:#F3F1EC; --on-panel-2:rgba(243,241,236,.7); --ok:#6FBF8B; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --stone:#121214; --stone-2:#1B1B1F; --ink:#F3F1EC; --ink-2:#B9B6AF;
+  --oak:#C48A55; --oak-text:#D7A06B; --cta:#B0753F; --cta-hover:#C28450; --on-cta:#121214;
+  --line:rgba(243,241,236,.14); --line-strong:rgba(243,241,236,.34);
+  --panel:#1F1F24; --on-panel:#F3F1EC; --on-panel-2:rgba(243,241,236,.7); --ok:#6FBF8B; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--stone);color:var(--ink);font:400 17px/1.65 var(--f-body);-webkit-font-smoothing:antialiased;
+  padding-left:max(0px,env(safe-area-inset-left,0px));padding-right:max(0px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-head);margin:0;letter-spacing:-.02em;text-wrap:balance;line-height:1.08}
+p{margin:0;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--oak);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:max(20px,env(safe-area-inset-left,0px)) max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font:600 12px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase;color:var(--oak-text);display:flex;align-items:center;gap:12px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--oak)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--ink);color:var(--stone);padding:10px 14px;z-index:100}
+.skip:focus{left:8px}
+
+/* knoppen */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;font:700 15px/1 var(--f-head);text-decoration:none;border:1.5px solid transparent;border-radius:3px;cursor:pointer;transition:background .2s,transform .2s,border-color .2s,color .2s}
+.btn svg{width:18px;height:18px;transition:transform .2s}
+.btn-cta{background:var(--cta);color:var(--on-cta)}
+.btn-cta:hover{background:var(--cta-hover)}
+.btn-cta:hover svg{transform:translateX(3px)}
+.btn-line{border-color:var(--line-strong);color:var(--ink);background:transparent}
+.btn-line:hover{border-color:var(--ink);background:var(--stone-2)}
+.btn:active{transform:translateY(1px)}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--stone) 94%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(8px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--stone)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.logo-mark{width:38px;height:38px;flex:none}
+.logo b{display:block;font:800 17px/1.1 var(--f-head);letter-spacing:-.01em}
+.logo small{display:block;font:500 11px/1.3 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+nav.main{display:flex;gap:28px}
+nav.main a{font:600 14px/1 var(--f-head);text-decoration:none;color:var(--ink-2);padding:12px 0;position:relative}
+nav.main a::after{content:"";position:absolute;left:0;right:100%;bottom:6px;height:2px;background:var(--oak);transition:right .25s}
+nav.main a:hover{color:var(--ink)} nav.main a:hover::after{right:0}
+.actions{display:flex;gap:10px;align-items:center}
+.actions .btn{min-height:44px;padding:0 18px}
+.tel-text{font:700 15px/1 var(--f-head);text-decoration:none;display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 6px}
+.tel-text svg{width:18px;height:18px;color:var(--oak-text)}
+
+/* hero */
+.hero{padding-block:56px 72px;border-bottom:1px solid var(--line);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,76px);font-weight:800;margin-top:22px;line-height:1.02}
+.hero h1 em{font-style:normal;color:var(--oak-text)}
+.hero .lead{font-size:19px;color:var(--ink-2);margin-top:24px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0;margin-top:44px;border-top:1px solid var(--line-strong)}
+.facts div{padding:16px 28px 0 0;margin-right:28px;border-right:1px solid var(--line)}
+.facts div:last-child{border:0;margin:0}
+.facts b{display:block;font:800 26px/1 var(--f-head);letter-spacing:-.02em}
+.facts span{display:block;font-size:13px;color:var(--ink-2);margin-top:6px;line-height:1.35}
+.draw{position:relative;color:var(--ink)}
+.draw svg{width:100%;height:auto;display:block}
+.draw .stroke{stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:square;vector-effect:non-scaling-stroke}
+.draw .oak{stroke:var(--oak);stroke-width:2}
+.draw .dim{stroke:var(--oak);stroke-width:1}
+.draw text{font:500 11px var(--f-body);fill:var(--ink-2);letter-spacing:.06em}
+.draw .fill{fill:var(--stone-2)}
+.draw-cap{display:flex;justify-content:space-between;gap:12px;margin-top:12px;font:500 12px/1.4 var(--f-body);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.draw path.trace{stroke-dasharray:1400;stroke-dashoffset:1400;animation:trace 2.2s .2s cubic-bezier(.3,.7,.2,1) forwards}
+@keyframes trace{to{stroke-dashoffset:0}}
+.rise{animation:rise .8s both cubic-bezier(.2,.7,.2,1)} .rise.d1{animation-delay:.08s} .rise.d2{animation-delay:.16s} .rise.d3{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* secties */
+section{padding-block:96px}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:48px;align-items:end;margin-bottom:48px}
+.head h2{font-size:clamp(32px,4.4vw,52px);font-weight:800;margin-top:18px}
+.head p{color:var(--ink-2)}
+
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:minmax(150px,auto);gap:16px}
+.tile{position:relative;border:1px solid var(--line);background:var(--stone);padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:24px;transition:border-color .25s,background .25s,transform .25s;min-width:0}
+.tile:hover{border-color:var(--oak);transform:translateY(-3px)}
+.tile h3{font-size:24px;font-weight:700;letter-spacing:-.015em}
+.tile p{color:var(--ink-2);font-size:16px;margin-top:10px}
+.tile .tag{font:600 11px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase;color:var(--oak-text);margin-bottom:14px;display:block}
+.t1{grid-column:span 4;grid-row:span 2;background:var(--panel);color:var(--on-panel);border-color:transparent}
+.t1 p{color:var(--on-panel-2);font-size:17px;max-width:46ch}
+.t1 .tag{color:var(--oak)}
+.t1 h3{font-size:clamp(30px,3.6vw,44px);font-weight:800}
+.t1 svg{width:100%;max-width:520px;height:auto;margin-top:auto;align-self:flex-end}
+.t1 .s{stroke:var(--on-panel);fill:none;stroke-width:1.3;vector-effect:non-scaling-stroke;opacity:.85}
+.t1 .o{stroke:var(--oak);fill:none;stroke-width:2;vector-effect:non-scaling-stroke}
+.t2{grid-column:span 2}.t3{grid-column:span 2}.t4{grid-column:span 3}.t5{grid-column:span 3}
+.t4,.t5{background:var(--stone-2)}
+.list{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.list li{font:500 13px/1 var(--f-body);padding:8px 12px;border:1px solid rgba(248,247,244,.28)}
+
+/* vakwerk */
+.work{background:var(--stone-2);border-block:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px}
+.ph{position:relative;overflow:hidden;min-height:260px;background:var(--panel);color:var(--on-panel);display:flex;align-items:flex-end;padding:20px;isolation:isolate}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.ph::before{content:"";position:absolute;inset:0;z-index:-2;background:
+  repeating-linear-gradient(92deg,rgba(255,255,255,.035) 0 2px,transparent 2px 9px),
+  repeating-linear-gradient(88deg,rgba(168,111,62,.16) 0 1px,transparent 1px 23px),var(--panel);transition:transform .6s}
+.ph:hover::before{transform:scale(1.05)}
+.ph svg.pic{position:absolute;right:16px;top:16px;width:46%;max-width:210px;opacity:.9;z-index:-1}
+.ph svg.pic *{stroke:var(--oak);fill:none;stroke-width:1.5;vector-effect:non-scaling-stroke}
+.ph b{display:block;font:700 19px/1.2 var(--f-head)}
+.ph span{display:block;font-size:13px;color:var(--on-panel-2);margin-top:4px}
+.ph em{position:absolute;left:20px;top:20px;font:500 10.5px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--on-panel-2);border:1px solid rgba(248,247,244,.25);padding:6px 8px;font-style:normal}
+.p1{grid-column:span 7;min-height:380px}.p2{grid-column:span 5}.p3{grid-column:span 4}.p4{grid-column:span 4}.p5{grid-column:span 4}
+.work-note{margin-top:24px;font-size:14px;color:var(--ink-2);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.work-note a{color:var(--oak-text);font-weight:600}
+
+/* werkwijze + over */
+.split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:72px}
+.about h2{font-size:clamp(32px,4.2vw,48px);font-weight:800;margin:18px 0 24px}
+.about p+p{margin-top:16px}
+.about p{color:var(--ink-2)}
+.pillars{display:grid;gap:0;margin-top:32px;border-top:1px solid var(--line-strong)}
+.pillars div{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.pillars b{font:700 15px/1.4 var(--f-head)}
+.pillars span{color:var(--ink-2);font-size:15.5px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:64px 1fr;gap:20px;padding:26px 0;border-top:1px solid var(--line-strong)}
+.steps li:last-child{border-bottom:1px solid var(--line-strong)}
+.steps li::before{content:counter(s);font:800 44px/1 var(--f-head);color:var(--oak);letter-spacing:-.04em}
+.steps h3{font-size:21px;font-weight:700;margin-bottom:6px}
+.steps p{color:var(--ink-2);font-size:16px}
+.steps-title{font:700 13px/1 var(--f-head);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;color:var(--ink-2)}
+
+/* offerte */
+.quote{background:var(--panel);color:var(--on-panel)}
+.quote .eyebrow{color:var(--oak)}
+.q-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:72px;align-items:start}
+.quote h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;margin:18px 0 22px}
+.quote .intro{color:var(--on-panel-2)}
+.promises{list-style:none;margin:30px 0 0;padding:0;display:grid;gap:14px}
+.promises li{display:flex;gap:12px;align-items:flex-start;color:var(--on-panel);font-size:16px}
+.promises svg{width:20px;height:20px;flex:none;margin-top:3px;color:var(--oak)}
+.contact-box{margin-top:36px;padding-top:24px;border-top:1px solid rgba(248,247,244,.2);display:grid;gap:6px;font-size:15px;color:var(--on-panel-2)}
+.contact-box b{color:var(--on-panel);font:700 17px/1.4 var(--f-head)}
+form{background:var(--stone);color:var(--ink);padding:36px;display:grid;gap:18px;border-radius:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:grid;gap:7px;min-width:0}
+label,.legend{font:600 13.5px/1.2 var(--f-head)}
+label small{font:400 12.5px var(--f-body);color:var(--ink-2)}
+input,select,textarea{font:400 16px/1.4 var(--f-body);color:var(--ink);background:var(--stone);border:1.5px solid var(--line-strong);border-radius:3px;padding:13px 14px;min-height:50px;width:100%;transition:border-color .2s,box-shadow .2s}
+textarea{resize:vertical;min-height:104px}
+input:hover,select:hover,textarea:hover{border-color:var(--ink-2)}
+input:focus-visible,select:focus-visible,textarea:focus-visible{outline:none;border-color:var(--oak);box-shadow:0 0 0 3px color-mix(in srgb,var(--oak) 35%,transparent)}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#B3261E}
+.err{color:#B3261E;font-size:13px;min-height:0}
+:root[data-theme="dark"] .err{color:#FF8A80}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF8A80}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;width:1px;height:1px;min-height:0}
+.chips label{font:600 14px/1 var(--f-head);padding:13px 16px;border:1.5px solid var(--line-strong);border-radius:3px;cursor:pointer;min-height:46px;display:inline-flex;align-items:center;transition:all .2s}
+.chips label:hover{border-color:var(--ink)}
+.chips input:checked+label{background:var(--ink);color:var(--stone);border-color:var(--ink)}
+.chips input:focus-visible+label{outline:3px solid var(--oak);outline-offset:2px}
+.submit{width:100%;min-height:54px;font-size:16px}
+.fine{font-size:13px;color:var(--ink-2);text-align:center;max-width:none}
+.done{display:none;text-align:left;gap:12px}
+.done h3{font-size:28px;font-weight:800}
+form.sent .fields{display:none} form.sent .done{display:grid}
+
+/* footer */
+footer{padding-block:48px 120px;font-size:14px;color:var(--ink-2)}
+.foot{display:flex;flex-wrap:wrap;gap:24px 56px;justify-content:space-between;align-items:flex-start}
+.foot b{display:block;color:var(--ink);font:700 15px var(--f-head);margin-bottom:6px}
+.foot a{color:var(--ink)}
+
+/* mobiele actiebalk */
+.dock{display:none}
+@media (max-width:980px){
+  nav.main{display:none}
+  .hero-grid,.head,.split,.q-grid{grid-template-columns:1fr;gap:40px}
+  .head{gap:20px;align-items:start}
+  .draw{max-width:560px}
+  section{padding-block:72px}
+  .t1{grid-column:span 6}.t2,.t3{grid-column:span 3}.t4,.t5{grid-column:span 3}
+  .p1,.p2{grid-column:span 12}.p3,.p4{grid-column:span 6}.p5{grid-column:span 12}
+}
+@media (max-width:640px){
+  body{font-size:16.5px}
+  .hero{padding-block:36px 48px}
+  .facts{grid-template-columns:1fr 1fr 1fr}
+  .facts div{padding-right:12px;margin-right:12px}
+  .facts b{font-size:21px}
+  .actions .btn,.tel-text span{display:none}
+  .logo small{display:none}
+  .bento{gap:12px}
+  .t1,.t2,.t3,.t4,.t5{grid-column:span 6}
+  .tile{padding:22px}
+  .grid{gap:12px}
+  .p1,.p2,.p3,.p4,.p5{grid-column:span 12;min-height:240px}
+  .pillars div{grid-template-columns:1fr;gap:4px}
+  .steps li{grid-template-columns:48px 1fr;gap:14px}
+  .steps li::before{font-size:34px}
+  form{padding:22px}
+  .row2{grid-template-columns:1fr}
+  .dock{display:grid;grid-template-columns:1fr 1.4fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:55;padding:10px max(12px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));background:var(--stone);border-top:1px solid var(--line-strong)}
+  .dock .btn{min-height:50px;padding:0 12px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .draw path.trace{stroke-dashoffset:0}
+}
+</style>
+
+<a class="skip" href="#offerte">Direct naar offerteformulier</a>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Timmerbedrijf P. Fokkema, naar boven">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" fill="var(--ink)"/><path d="M7 29 20 11l13 18" fill="none" stroke="var(--oak)" stroke-width="2.4" stroke-linecap="square"/><path d="M12 29h16M20 11v18" fill="none" stroke="var(--stone)" stroke-width="2" stroke-linecap="square"/></svg>
+      <span><b>P. Fokkema</b><small>Timmerbedrijf</small></span>
+    </a>
+    <nav class="main" aria-label="Hoofdmenu">
+      <a href="#diensten">Diensten</a><a href="#vakwerk">Vakwerk</a><a href="#werkwijze">Werkwijze</a><a href="#offerte">Contact</a>
+    </nav>
+    <div class="actions">
+      <a class="tel-text" id="telTop" href="#offerte"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span class="telLabel">Bel direct</span></a>
+      <a class="btn btn-cta" href="#offerte">Offerte aanvragen</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow rise">Timmerbedrijf in Middenbeemster</p>
+      <h1 class="rise d1">Timmerwerk in de Beemster, <em>strak afgewerkt</em> en op maat.</h1>
+      <p class="lead rise d2">Dakkapel, overkapping, verbouwing of kozijnen: u praat met de vakman die het werk ook zelf doet. Duidelijke afspraken, een vaste prijs vooraf en een nette oplevering.</p>
+      <div class="cta-row rise d3">
+        <a class="btn btn-cta" href="#offerte">Offerte aanvragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-line telBtn" href="#offerte"><span class="telLabel">Bel direct</span></a>
+      </div>
+      <div class="facts rise d3" aria-label="Kerngegevens">
+        <div><b>Sinds 2016</b><span>eigen timmerbedrijf</span></div>
+        <div><b>1 vakman</b><span>vast aanspreekpunt</span></div>
+        <div><b>Beemster</b><span>Middenbeemster, N-H</span></div>
+      </div>
+    </div>
+    <figure class="draw" style="margin:0">
+      <svg viewBox="0 0 520 440" role="img" aria-label="Bouwtekening van een woning met dakkapel, met maatvoering">
+        <rect class="fill" x="70" y="250" width="380" height="150"/>
+        <path class="stroke trace" d="M40 400H480M70 400V250M450 400V250M70 250 260 70l190 180M70 250H450"/>
+        <path class="stroke oak trace" d="M170 205V150h120v55M160 205h140M165 150l55-34 65 34"/>
+        <path class="stroke trace" d="M190 205v-45h80v45M230 160v45M190 182h80"/>
+        <rect class="stroke" x="110" y="285" width="60" height="75" /><rect class="stroke" x="350" y="285" width="60" height="75"/>
+        <rect class="stroke" x="225" y="310" width="70" height="90"/>
+        <g class="dim"><path class="dim" d="M70 430H450M70 424v12M450 424v12"/><path class="dim" d="M492 400V70M486 400h12M486 70h12"/></g>
+        <text x="260" y="424" text-anchor="middle">9.200 mm</text>
+        <text x="500" y="240" transform="rotate(-90 500 240)" text-anchor="middle">7.150 mm</text>
+        <text x="300" y="130">dakkapel, maatwerk</text>
+        <path class="dim" d="M290 135l-40 12"/>
+      </svg>
+      <figcaption class="draw-cap"><span>Doorsnede dakkapel</span><span>Schaal 1:50</span></figcaption>
+    </figure>
+  </div>
+</div>
+
+<section id="diensten">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Wat we doen</p><h2>Alles wat van hout moet, strak afgewerkt.</h2></div>
+      <p>Van een nieuwe dakkapel tot een complete verbouwing. Bij elk werk krijgt u eerst een heldere tekening en een vaste prijs, zodat u weet waar u aan toe bent.</p>
+    </div>
+    <div class="bento">
+      <article class="tile t1">
+        <div>
+          <span class="tag">Specialisatie</span>
+          <h3>Dakkapellen</h3>
+          <p>Meer ruimte en licht op zolder, zonder het karakter van uw huis te verliezen. Op maat gemaakt, goed geïsoleerd en netjes aangesloten op uw dak.</p>
+          <ul class="list"><li>Plat dak of zadeldak</li><li>Op maat gemaakt</li><li>Inclusief afwerking</li></ul>
+        </div>
+        <svg viewBox="0 0 520 180" aria-hidden="true"><path class="s" d="M10 170H510M40 170V110L260 20l220 90v60M110 110v-48h300v48"/><path class="o" d="M150 110V70h220v40M140 70h240"/><path class="s" d="M190 110V84h60v26M270 110V84h60v26"/></svg>
+      </article>
+      <article class="tile t2"><div><span class="tag">Verbouw</span><h3>Verbouw &amp; renovatie</h3><p>Van aanbouw tot complete verbouwing van uw woning.</p></div></article>
+      <article class="tile t3"><div><span class="tag">Buiten</span><h3>Overkappingen</h3><p>Carport, veranda of tuinoverkapping die bij uw huis past.</p></div></article>
+      <article class="tile t4"><div><span class="tag">Gevel</span><h3>Kozijnen, ramen &amp; deuren</h3><p>Nieuwe kozijnen of een nette vervanging, goed afgekit en afgewerkt.</p></div></article>
+      <article class="tile t5"><div><span class="tag">Binnen</span><h3>Maatwerk &amp; herstel</h3><p>Kasten, vloeren, trappen en houtwerk dat u er zelf niet meer uit haalt.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="vakwerk" class="work">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Vakwerk</p><h2>Zo ziet een afgeronde klus eruit.</h2></div>
+      <p>Hout, maat en afwerking: het zit in de details. Hier komen de foto's van opgeleverde projecten.</p>
+    </div>
+    <div class="grid" id="projects"></div>
+    <p class="work-note"><span>Meer werk zien? Neem gerust contact op voor referenties.</span> <a href="#offerte">Vraag een voorbeeld op</a></p>
+  </div>
+</section>
+
+<section id="werkwijze">
+  <div class="wrap split">
+    <div class="about">
+      <p class="eyebrow">Over het bedrijf</p>
+      <h2>Eén vakman, van eerste gesprek tot oplevering.</h2>
+      <p>Timmerbedrijf P. Fokkema is een eigen bedrijf in Middenbeemster, gestart in 2016. Geen tussenpersonen en geen wisselende ploegen: wie de offerte maakt, staat ook bij u op de stoep.</p>
+      <p>Dat betekent korte lijnen. U belt, mailt of appt en krijgt antwoord van degene die het werk uitvoert.</p>
+      <div class="pillars">
+        <div><b>Vaste aanspreekpunt</b><span>Eén persoon voor vragen, planning en uitvoering.</span></div>
+        <div><b>Vaste prijs vooraf</b><span>Een heldere offerte, geen verrassingen achteraf.</span></div>
+        <div><b>Netjes werken</b><span>Bouwplaats opgeruimd, woning schoon achtergelaten.</span></div>
+      </div>
+    </div>
+    <div>
+      <p class="steps-title">Zo werkt het</p>
+      <ol class="steps">
+        <li><div><h3>Kennismaking en opname</h3><p>We komen langs, kijken naar uw wens en meten alles op. Gratis en vrijblijvend.</p></div></li>
+        <li><div><h3>Tekening en vaste prijs</h3><p>U ontvangt een duidelijke offerte met wat erin zit en wanneer we kunnen starten.</p></div></li>
+        <li><div><h3>Uitvoering</h3><p>We werken volgens planning en houden u onderweg op de hoogte.</p></div></li>
+        <li><div><h3>Oplevering</h3><p>Samen lopen we het werk na. Pas als u tevreden bent, is de klus klaar.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="offerte" class="quote">
+  <div class="wrap q-grid">
+    <div>
+      <p class="eyebrow">Offerte aanvragen</p>
+      <h2>Vertel kort wat u wilt. U hoort snel van ons.</h2>
+      <p class="intro">Vul vier velden in, dat kost u minder dan een halve minuut. Een foto of tekening mag later per mail.</p>
+      <ul class="promises">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Gratis en vrijblijvend</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Reactie van de vakman zelf</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Vaste prijs, geen onduidelijke meerkosten</li>
+      </ul>
+      <div class="contact-box">
+        <b>Timmerbedrijf P. Fokkema</b>
+        <span>Molwijk 1, 1462 GC Middenbeemster</span>
+        <span id="contactLines"></span>
+      </div>
+    </div>
+
+    <form id="qform" novalidate aria-labelledby="formTitle">
+      <div class="fields" style="display:grid;gap:18px">
+        <h3 id="formTitle" style="font-size:22px;font-weight:800">Uw aanvraag</h3>
+        <div class="field">
+          <span class="legend" id="lblType">Waar gaat het over?</span>
+          <div class="chips" role="radiogroup" aria-labelledby="lblType">
+            <input type="radio" name="type" id="t-dak" value="Dakkapel" checked><label for="t-dak">Dakkapel</label>
+            <input type="radio" name="type" id="t-ver" value="Verbouw"><label for="t-ver">Verbouw</label>
+            <input type="radio" name="type" id="t-ove" value="Overkapping"><label for="t-ove">Overkapping</label>
+            <input type="radio" name="type" id="t-koz" value="Kozijnen"><label for="t-koz">Kozijnen</label>
+            <input type="radio" name="type" id="t-and" value="Anders"><label for="t-and">Anders</label>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="naam">Naam</label><input id="naam" name="naam" autocomplete="name" required><span class="err" id="e-naam" role="alert"></span></div>
+          <div class="field"><label for="tel">Telefoon</label><input id="tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required><span class="err" id="e-tel" role="alert"></span></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="plaats">Plaats</label><input id="plaats" name="plaats" autocomplete="address-level2" required><span class="err" id="e-plaats" role="alert"></span></div>
+          <div class="field"><label for="mail">E-mail <small>(optioneel)</small></label><input id="mail" name="mail" type="email" inputmode="email" autocomplete="email"></div>
+        </div>
+        <div class="field"><label for="tekst">Wat wilt u laten maken? <small>(optioneel)</small></label><textarea id="tekst" name="tekst" placeholder="Bijvoorbeeld: dakkapel aan de voorzijde, ongeveer 3 meter breed."></textarea></div>
+        <button class="btn btn-cta submit" type="submit">Offerte aanvragen</button>
+        <p class="fine">Uw gegevens gebruiken we alleen om u te antwoorden.</p>
+      </div>
+      <div class="done" role="status" aria-live="polite" tabindex="-1" id="done">
+        <h3>Bedankt, <span id="doneName"></span>.</h3>
+        <p>Uw aanvraag is genoteerd. U hoort zo snel mogelijk wat de mogelijkheden zijn.</p>
+        <button class="btn btn-line" type="button" id="again">Nog een aanvraag</button>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><b>Timmerbedrijf P. Fokkema</b>Molwijk 1<br>1462 GC Middenbeemster</div>
+    <div><b>Bedrijfsgegevens</b>KvK 67238823<br>Opgericht 2016</div>
+    <div><b>Snel naar</b><a href="#diensten">Diensten</a> · <a href="#vakwerk">Vakwerk</a> · <a href="#offerte">Offerte</a></div>
+  </div>
+</footer>
+
+<div class="dock">
+  <a class="btn btn-line telBtn" href="#offerte"><span class="telLabel">Bel direct</span></a>
+  <a class="btn btn-cta" href="#offerte">Offerte aanvragen</a>
+</div>
+
+<script>
+/* ====== INVULLEN DOOR DE KLANT ======
+   Alleen echte gegevens invullen. Leeg laten = knoppen verwijzen naar het formulier. */
+const CONTACT = { phone: "", phoneDisplay: "", email: "" };
+/* Projecten: zet bij `src` de URL van een eigen foto (bijv. uit Instagram). Zonder foto toont de tegel een tekening. */
+const PROJECTS = [
+  { cls:"p1", title:"Dakkapel op maat", meta:"Dakkapel", src:"", pic:"M10 90V50L80 12l70 38v40M30 50V30h100v20" },
+  { cls:"p2", title:"Aanbouw en verbouw", meta:"Verbouw", src:"", pic:"M10 90h140M20 90V40h80v50M100 40l30 20v30" },
+  { cls:"p3", title:"Overkapping", meta:"Buiten", src:"", pic:"M10 30h140M30 30v60M130 30v60M10 30l20-14h100l20 14" },
+  { cls:"p4", title:"Kozijnen en deuren", meta:"Gevel", src:"", pic:"M30 10h100v80H30zM80 10v80M30 50h100" },
+  { cls:"p5", title:"Trappen en maatwerk", meta:"Binnen", src:"", pic:"M10 90h30V70h30V50h30V30h30V10" }
+];
+(function(){
+  const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+  // telefoon
+  if(CONTACT.phone){
+    $$(".telLabel").forEach(el => el.textContent = "Bel " + (CONTACT.phoneDisplay || CONTACT.phone));
+    $$("#telTop,.telBtn").forEach(a => a.href = "tel:" + CONTACT.phone.replace(/[^+\d]/g,""));
+  }
+  const lines = [];
+  if(CONTACT.phone) lines.push("Tel. " + (CONTACT.phoneDisplay || CONTACT.phone));
+  if(CONTACT.email) lines.push(CONTACT.email);
+  $("#contactLines").textContent = lines.join(" · ");
+  // projecten
+  $("#projects").innerHTML = PROJECTS.map(p => `
+    <figure class="ph ${p.cls}" style="margin:0">
+      ${p.src ? `<img src="${p.src}" alt="${p.title}" loading="lazy">` : `<em>Hier komt uw foto</em><svg class="pic" viewBox="0 0 160 100" aria-hidden="true"><path d="${p.pic}"/></svg>`}
+      <figcaption><b>${p.title}</b><span>${p.meta}</span></figcaption>
+    </figure>`).join("");
+  // formulier
+  const f = $("#qform");
+  const rules = { naam:"Vul uw naam in.", tel:"Vul een telefoonnummer in, dan bellen we u terug.", plaats:"Vul uw woonplaats in." };
+  const check = id => {
+    const el = $("#"+id), v = el.value.trim();
+    let msg = "";
+    if(!v) msg = rules[id];
+    else if(id==="tel" && v.replace(/\D/g,"").length < 8) msg = "Dit nummer lijkt te kort. Controleer het even.";
+    $("#e-"+id).textContent = msg;
+    el.setAttribute("aria-invalid", msg ? "true" : "false");
+    return !msg;
+  };
+  Object.keys(rules).forEach(id => $("#"+id).addEventListener("blur", () => check(id)));
+  f.addEventListener("submit", e => {
+    e.preventDefault();
+    const ok = Object.keys(rules).map(check).every(Boolean);
+    if(!ok){ const bad = Object.keys(rules).find(id => $("#"+id).getAttribute("aria-invalid")==="true"); $("#"+bad).focus(); return; }
+    /* TODO: koppel hier de echte verzending (formulierdienst, e-mail of WordPress). */
+    $("#doneName").textContent = $("#naam").value.trim().split(" ")[0];
+    f.classList.add("sent"); $("#done").focus();
+  });
+  $("#again").addEventListener("click", () => { f.reset(); f.classList.remove("sent"); $("#naam").focus(); });
+})();
+</script>
